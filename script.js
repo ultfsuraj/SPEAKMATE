@@ -49,6 +49,7 @@ recognition.onstart = () => {
     stopBtn.disabled = false
 };
 
+// here we want to add to textarea, only if event.results[i][0].isFinal
 recognition.onresult = (event) => {
     for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
