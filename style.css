@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 
@@ -62,6 +63,7 @@
     padding: 3.3vw;
     text-wrap: wrap;
     border: 2px solid gray;
+    user-select: all;
 }
 .interim{
     padding: 2.2vw;
@@ -69,4 +71,5 @@
     color: black;
     border: 1px solid gray;
     height: 8vw;
+    user-select: all;
 }

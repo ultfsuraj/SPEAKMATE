@@ -13,6 +13,16 @@ let pitch = 0.95
 let rate = 1
 let voices = window.speechSynthesis.getVoices() || []
 
+const tellMe = (text, voiceIndex, pitch, rate) => {
+    let utterThis = new SpeechSynthesisUtterance(text);
+    utterThis.voice = voices[voiceIndex];
+    utterThis.pitch = pitch;
+    utterThis.rate = rate;
+    window.speechSynthesis?.speak(utterThis);
+    console.log(text)
+}
+
+
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -40,38 +50,31 @@ recognition.onstart = () => {
 };
 
 recognition.onresult = (event) => {
-    let finalTranscript = speechTxt.value;
-
     for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-            finalTranscript += transcript + ' ';
-            interimTxt.textContent = transcript
-            setTimeout(( )=>interimTxt.textContent = "", 500)
-            BUFFER.length=0
-            BUFFER.text = ''
-        }
-        else {
-            BUFFER.length++
-            BUFFER.text =  (transcript.length > BUFFER.text.length)? transcript : BUFFER.text
-            if(BUFFER.length==2){
-                interimTxt.textContent = BUFFER.text
-                BUFFER.length = 0
-            }
-
-            
-        }
+        interimTxt.textContent = transcript
+        BUFFER.text = transcript
     }
-    speechTxt.value = finalTranscript;
 };
 
 recognition.onerror = (event) => {
-    console.error('Speech recognition error', event.error);
+    console.log('Speech recognition error. ', event.error);
+    tellMe("speech recognition error. check your internet.", 1, 0.95, 1)
 };
 
 recognition.onend = () => {
+    console.log(BUFFER.text)
+    speechTxt.value += BUFFER.text + ". "
+    setTimeout(()=>interimTxt.textContent = "", 700)
     startBtn.disabled = false;
     stopBtn.disabled = true;
+    if(BUFFER.text.toLowerCase().includes("stop recognition")){
+        recognition.stop();
+    }
+    else{
+        recognition.start();
+    }
+    
 };
 
 startBtn.addEventListener('click', () => {
@@ -83,18 +86,10 @@ stopBtn.addEventListener('click', () => {
 });
 
 
-const tellMe = (text, voiceIndex, pitch, rate) => {
-    let utterThis = new SpeechSynthesisUtterance(text);
-    utterThis.voice = voices[voiceIndex];
-    utterThis.pitch = pitch;
-    utterThis.rate = rate;
-    window.speechSynthesis?.speak(utterThis);
-    console.log(text)
-}
 
 speechSynthesis.onvoiceschanged = () => {
     voices = window.speechSynthesis.getVoices();
-    tellMe(inputTxt,7,0.95,1)
+    tellMe(inputTxt,4,0.95,1)
 }
 
 
