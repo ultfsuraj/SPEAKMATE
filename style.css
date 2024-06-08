@@ -17,7 +17,8 @@
 }
 
 .speakBtn{
-    width: 50vw;
+    display: inline-block;
+    width: 40vw;
     padding: 3.3vw;
     font-size: 6vw;
     border: 2px solid rgb(0, 129, 49);
@@ -25,11 +26,47 @@
     color: black;
     cursor: pointer;
 }
-
-.enterTxt{
-    width: 80vw;
-    height: 20vw;
+.clearBtn{
+    display: inline-block;
+    width: 40vw;
+    padding: 3.3vw;
+    font-size: 6vw;
+    border: 2px solid rgb(162, 1, 1);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+.startBtn{
+    display: inline-block;
+    width: 40vw;
+    padding: 3.3vw;
+    font-size: 6vw;
+    border: 2px solid rgb(0, 129, 49);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+.stopBtn{
+    display: inline-block;
+    width: 40vw;
+    padding: 3.3vw;
+    font-size: 6vw;
+    border: 2px solid rgb(162, 1, 1);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+.speechTxt{
+    width: 90vw;
+    height: 60vw;
     padding: 3.3vw;
     text-wrap: wrap;
     border: 2px solid gray;
+}
+.interim{
+    padding: 2.2vw;
+    background-color: lightgoldenrodyellow;
+    color: black;
+    border: 1px solid gray;
+    height: 8vw;
 }
