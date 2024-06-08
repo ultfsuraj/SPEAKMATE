@@ -7,34 +7,29 @@ if (!('speechSynthesis' in window)) {
     alert('Your browser does not support the Web Speech API');
   }
   
+const textArea = document.querySelector(".enterTxt")
+let inputTxt = "Hi, I'm your AI assistant.... you can talk to me in english, we can practice together"
+let pitch = 0.95
+let rate = 1
+let voices = window.speechSynthesis.getVoices() || []
 
-setInterval(()=>{
+const tellMe = (text, voiceIndex, pitch, rate) => {
+    let utterThis = new SpeechSynthesisUtterance(text);
+    utterThis.voice = voices[voiceIndex];
+    utterThis.pitch = pitch;
+    utterThis.rate = rate;
+    window.speechSynthesis?.speak(utterThis);
+    console.log(text)
+}
 
-
-    let synth = window.speechSynthesis;
-
-    let inputTxt = "o. Hi, I'm your AI assistant.... you can talk to me in english, we can practice together"
-    let pitch = 0.95
-    let rate = 1
-    
-    let voices = window.speechSynthesis.getVoices() ;
-    if(voices.length == 0){
-        alert("No voices found on your browser")
-    }
-    
-    console.log('voices', voices)
-    
-    let tellMe = (text,voiceIndex, pitch, rate) => {
-        let utterThis = new SpeechSynthesisUtterance(text);
-        utterThis.voice = voices[voiceIndex];
-        utterThis.pitch = pitch;
-        utterThis.rate = rate;
-        synth.speak(utterThis);
-    }
-    
-    tellMe(inputTxt,7, 1, 1)
-    
+speechSynthesis.onvoiceschanged = () => {
+    voices = window.speechSynthesis.getVoices();
+    tellMe(inputTxt,7,0.95,1)
+}
 
 
-},5000)
+const speakBtn = document.querySelector(".speakBtn")
 
+speakBtn.addEventListener("click",()=>{
+    tellMe(textArea.value, 7, 0.95, 1)
+})

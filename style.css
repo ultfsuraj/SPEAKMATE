@@ -7,7 +7,7 @@
 .header{
     background-color: #13191a;
     width: 100vw;
-    height: 15vw;
+    height: 10vw;
     font-size: 8vw;
     color: white;
     text-align: center;
@@ -16,3 +16,20 @@
     letter-spacing: 0.5vw;
 }
 
+.speakBtn{
+    width: 50vw;
+    padding: 3.3vw;
+    font-size: 6vw;
+    border: 2px solid rgb(0, 129, 49);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+
+.enterTxt{
+    width: 80vw;
+    height: 20vw;
+    padding: 3.3vw;
+    text-wrap: wrap;
+    border: 2px solid gray;
+}
