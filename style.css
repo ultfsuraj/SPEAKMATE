@@ -19,7 +19,7 @@
 
 .speakBtn{
     display: inline-block;
-    width: 40vw;
+    width: 20vw;
     padding: 3.3vw;
     font-size: 6vw;
     border: 2px solid rgb(0, 129, 49);
@@ -29,10 +29,20 @@
 }
 .clearBtn{
     display: inline-block;
-    width: 40vw;
+    width: 20vw;
     padding: 3.3vw;
     font-size: 6vw;
-    border: 2px solid rgb(162, 1, 1);
+    border: 2px solid rgb(31, 1, 1);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+.cancelBtn{
+    display: inline-block;
+    width: 20vw;
+    padding: 3.3vw;
+    font-size: 6vw;
+    border: 2px solid rgb(162, 1, 68);
     text-align: center;
     color: black;
     cursor: pointer;
@@ -66,6 +76,7 @@
     user-select: all;
 }
 .interim{
+    width: 95%;
     padding: 2.2vw;
     background-color: lightgoldenrodyellow;
     color: black;
