@@ -2,7 +2,6 @@
 // step 2 : speech to text, 
 // step 3 : api integration, chatGPT (similar), LLMs that can run locally ? 
 
-// https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API
 
 if (!('speechSynthesis' in window)) {
     alert('Your browser does not support the Web Speech API');
@@ -40,9 +39,11 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     utterThis.pitch = pitch;
     utterThis.rate = rate;
     utterThis.onstart = () => {
+        speechTxt.value = text
         recognition.stop()
     }
     utterThis.onend = () => {
+        speechTxt.value = ""
         recognition.start()
     }
 
@@ -67,25 +68,27 @@ recognition.onresult = (event) => {
 
 recognition.onerror = (event) => {
     console.log('Speech recognition error. ', event.error);
-    tellMe("speech recognition error. check your internet.", 1, 0.95, 1)
-    recognition.start()
 };
 
 recognition.onend = () => {
-    BUFFER.text.trim()
     let index = BUFFER.text.toLocaleLowerCase().indexOf("stop recognition")
+    if(index<0){
+        recognition.start()
+    }
+    BUFFER.text.trim()
     if (index >= 0) {
         speechTxt.value += BUFFER.text.substring(0, index)
-    } else {
+    } else if (BUFFER.text.length >0) {
         speechTxt.value += BUFFER.text + ". "
     }
-    setTimeout(() => interimTxt.textContent = "", 700)
+    setTimeout(() => interimTxt.textContent = "", 500)
     startBtn.disabled = false;
     stopBtn.disabled = true;
-    if (BUFFER.text.toLowerCase().includes("stop recognition")) {
+    if (index>-1) {
         recognition.stop();
         if (speechTxt.value.length > 0) {
             sendMessage(speechTxt.value)
+            speechTxt.value = ''
             BUFFER.text = ''
         }
         return
@@ -103,9 +106,9 @@ stopBtn.addEventListener('click', () => {
     recognition.stop();
 });
 
-
 cancelBtn.addEventListener('click', () => {
     window.speechSynthesis.cancel()
+    speechTxt.value = ''
     recognition.start()
 })
 

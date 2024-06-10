@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    overflow: hidden;
 }
 
 
@@ -74,6 +79,8 @@
     text-wrap: wrap;
     border: 2px solid gray;
     user-select: all;
+    text-align: center;
+    align-content: center;
 }
 .interim{
     width: 95%;
