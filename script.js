@@ -11,6 +11,7 @@ let inputTxt = "Hi, I'm your AI assistant.... you can talk to me in english, we 
 let pitch = 0.95
 let rate = 1
 let voices = window.speechSynthesis.getVoices() || []
+let stopText = "stop recognition"
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -71,7 +72,7 @@ recognition.onerror = (event) => {
 };
 
 recognition.onend = () => {
-    let index = BUFFER.text.toLocaleLowerCase().indexOf("stop recognition")
+    let index = BUFFER.text.toLocaleLowerCase().indexOf(stopText)
     if(index<0){
         recognition.start()
     }
@@ -103,6 +104,7 @@ startBtn.addEventListener('click', () => {
 });
 
 stopBtn.addEventListener('click', () => {
+    BUFFER.text = stopText
     recognition.stop();
 });
 
