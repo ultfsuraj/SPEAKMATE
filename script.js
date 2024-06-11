@@ -45,6 +45,7 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
         speechTxt.value = text
     }
     utterThis.onend = () => {
+        BUFFER.text = ''
         speechTxt.value = ""
         if(!waitMsg.includes(text)){
             recognition.start()
@@ -142,7 +143,7 @@ const sendMessage = async (prompt) => {
 
     setTimeout(()=>{
         tellMe(waitMsg[ Math.floor(Math.random() * (waitMsg.length))], 3, 0.95, 1)
-    } , 1500)
+    } , 2000)
 
     try {
         const response = await fetch('https://withered-frog-d5b7.purkufirte.workers.dev/', {
