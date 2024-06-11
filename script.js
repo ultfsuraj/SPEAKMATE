@@ -115,6 +115,7 @@ stopBtn.addEventListener('click', () => {
 cancelBtn.addEventListener('click', () => {
     window.speechSynthesis.cancel()
     speechTxt.value = ''
+    BUFFER.text = ''
     recognition.start()
 })
 
@@ -138,7 +139,7 @@ clearBtn.addEventListener("click", () => {
 
 const sendMessage = async (prompt) => {
     let payload = {
-        prompt: prompt + " correct above question & Answer in few sentences."
+        prompt: prompt + "Answer the corrected question briefly without showing it."
     }
 
     setTimeout(()=>{

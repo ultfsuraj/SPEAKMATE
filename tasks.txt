@@ -16,4 +16,5 @@ PENDING
     ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that'] 
     also if response comes while speaking, it shouldn't stop. finish talking and then speak the response.
 8. feature what to do with error states. error while ai response, and error with speechAPI
+9. remember conversation : can store in local storate. and send all of the conversations at once. 
 
