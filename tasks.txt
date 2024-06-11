@@ -1,0 +1,19 @@
+DONE 
+6. feature AI response from cloud servers ( worker.js handels cors error. cloudflare worker ai, pages (website))
+5. feature speech to text, what works on mobile doesn't work on desktop 
+    recognition.onend and recognition.onresult doesn't work same on mobile/desktop 
+
+
+PENDING
+
+1. configure ai  page design 
+2. how to use    page design 
+3. home          page design 
+4. help          page design 
+
+7. feature adding pending states for AI answer request . indication that 
+    answer is being fetched. this can be visual in text area or it can be auditory like, 
+    ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that'] 
+    also if response comes while speaking, it shouldn't stop. finish talking and then speak the response.
+8. feature what to do with error states. error while ai response, and error with speechAPI
+

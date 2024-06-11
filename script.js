@@ -7,12 +7,11 @@ if (!('speechSynthesis' in window)) {
     alert('Your browser does not support the Web Speech API');
 }
 
-let inputTxt = "Hi, I'm your AI assistant.... you can talk to me in english, we can practice together"
 let pitch = 0.95
 let rate = 1
 let voices = window.speechSynthesis.getVoices() || []
-let stopText = "stop recognition"
-
+const stopText = "stop recognition"
+const waitMsg =  ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second'] 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (!SpeechRecognition) {
@@ -40,12 +39,16 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     utterThis.pitch = pitch;
     utterThis.rate = rate;
     utterThis.onstart = () => {
-        speechTxt.value = text
+        speechTxt.value = ""
+        BUFFER.text = stopText
         recognition.stop()
+        speechTxt.value = text
     }
     utterThis.onend = () => {
         speechTxt.value = ""
-        recognition.start()
+        if(!waitMsg.includes(text)){
+            recognition.start()
+        }
     }
 
     window.speechSynthesis?.speak(utterThis);
@@ -116,7 +119,6 @@ cancelBtn.addEventListener('click', () => {
 
 speechSynthesis.onvoiceschanged = () => {
     voices = window.speechSynthesis.getVoices();
-    tellMe(inputTxt, 4, 0.95, 1)
 }
 
 
@@ -137,6 +139,11 @@ const sendMessage = async (prompt) => {
     let payload = {
         prompt: prompt + " correct above question & Answer in few sentences."
     }
+
+    setTimeout(()=>{
+        tellMe(waitMsg[ Math.floor(Math.random() * (waitMsg.length))], 3, 0.95, 1)
+    } , 1500)
+
     try {
         const response = await fetch('https://withered-frog-d5b7.purkufirte.workers.dev/', {
             method: 'POST',
@@ -152,7 +159,7 @@ const sendMessage = async (prompt) => {
 
         const data = await response.json()
         speechTxt.value = ""
-        tellMe(data?.result?.response, 7, 0.95, 1)
+        tellMe(data?.result?.response, 3, 0.95, 1)
 
     } catch (error) {
         console.error('Error:', error)
