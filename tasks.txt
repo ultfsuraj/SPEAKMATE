@@ -3,13 +3,13 @@ DONE
 5. feature speech to text, what works on mobile doesn't work on desktop 
     recognition.onend and recognition.onresult doesn't work same on mobile/desktop 
 
-
-PENDING
-
 1. configure ai  page design 
 2. how to use    page design 
 3. home          page design 
 4. help          page design 
+
+
+PENDING
 
 7. feature adding pending states for AI answer request . indication that 
     answer is being fetched. this can be visual in text area or it can be auditory like, 
@@ -17,4 +17,5 @@ PENDING
     also if response comes while speaking, it shouldn't stop. finish talking and then speak the response.
 8. feature what to do with error states. error while ai response, and error with speechAPI
 9. remember conversation : can store in local storate. and send all of the conversations at once. 
-
+10. what to do when there's a long delay in network. 
+11. disable speak button during conversation, disable cancel button when not speaking 

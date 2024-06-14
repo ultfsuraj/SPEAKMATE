@@ -9,6 +9,7 @@ if (!('speechSynthesis' in window)) {
 
 let pitch = 0.95
 let rate = 1
+let speak = true;
 let voices = window.speechSynthesis.getVoices() || []
 const stopText = "stop recognition"
 const waitMsg =  ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second'] 
@@ -47,7 +48,7 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     utterThis.onend = () => {
         BUFFER.text = ''
         speechTxt.value = ""
-        if(!waitMsg.includes(text)){
+        if(!waitMsg.includes(text) && !speak){
             recognition.start()
         }
     }
@@ -104,11 +105,17 @@ recognition.onend = () => {
 };
 
 startBtn.addEventListener('click', () => {
+    // disable speak button
+    speak = false;
     recognition.start();
 });
 
 stopBtn.addEventListener('click', () => {
+    // enable speak button
+    speak= true;
+    speechTxt.value = ''
     BUFFER.text = stopText
+    window.speechSynthesis.cancel()
     recognition.stop();
 });
 
@@ -127,7 +134,9 @@ speechSynthesis.onvoiceschanged = () => {
 const speakBtn = document.querySelector(".speakBtn")
 
 speakBtn.addEventListener("click", () => {
-    tellMe(speechTxt.value, 7, 0.95, 1)
+    if(speak){
+        tellMe(speechTxt.value, 7, 0.95, 1)
+    }
 })
 
 const clearBtn = document.querySelector(".clearBtn")
@@ -139,7 +148,7 @@ clearBtn.addEventListener("click", () => {
 
 const sendMessage = async (prompt) => {
     let payload = {
-        prompt: prompt + "Answer the corrected question briefly without showing it."
+        prompt: prompt + "correct above question and answer in brief without mentioning corrected question."
     }
 
     setTimeout(()=>{
