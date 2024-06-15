@@ -1,28 +1,25 @@
-*{
+:root {
+    --small : 4vw;
+    --regular: 5vw;
+    --large: 6vw;
+}
+
+
+* {
     margin: 0;
     padding: 0;
     user-select: none;
+    overflow: hidden;
     box-sizing: border-box;
+    font-size: var(--regular);
 }
 
-.mainContainer{
+.mainContainer {
     overflow: hidden;
 }
 
 
-.header{
-    background-color: #13191a;
-    width: 100vw;
-    height: 10vw;
-    font-size: 8vw;
-    color: white;
-    text-align: center;
-    align-content: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    letter-spacing: 0.5vw;
-}
-
-.speakBtn{
+.speakBtn {
     display: inline-block;
     width: 20vw;
     padding: 3.3vw;
@@ -32,7 +29,8 @@
     color: black;
     cursor: pointer;
 }
-.clearBtn{
+
+.clearBtn {
     display: inline-block;
     width: 20vw;
     padding: 3.3vw;
@@ -42,7 +40,8 @@
     color: black;
     cursor: pointer;
 }
-.cancelBtn{
+
+.cancelBtn {
     display: inline-block;
     width: 20vw;
     padding: 3.3vw;
@@ -52,7 +51,8 @@
     color: black;
     cursor: pointer;
 }
-.startBtn{
+
+.startBtn {
     display: inline-block;
     width: 40vw;
     padding: 3.3vw;
@@ -62,7 +62,8 @@
     color: black;
     cursor: pointer;
 }
-.stopBtn{
+
+.stopBtn {
     display: inline-block;
     width: 40vw;
     padding: 3.3vw;
@@ -72,7 +73,8 @@
     color: black;
     cursor: pointer;
 }
-.speechTxt{
+
+.speechTxt {
     width: 90vw;
     height: 60vw;
     padding: 3.3vw;
@@ -82,12 +84,160 @@
     text-align: center;
     align-content: center;
 }
-.interim{
+
+.interim {
     width: 95%;
     padding: 2.2vw;
-    background-color: lightgoldenrodyellow;
     color: black;
     border: 1px solid gray;
     height: 8vw;
     user-select: all;
+}
+
+
+
+
+/* ............................................... */
+
+.appWrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.figtree-appWrapper {
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.header {
+    background-color: #000000;
+    font-family: inherit;
+    padding: 3vw;
+    font-size: var(--large);
+    font-weight: 700;
+    letter-spacing: 1vw;
+    color: white;
+    text-align: center;
+}
+
+
+.middle {
+    background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
+    flex-grow: 1;
+    font-family: inherit;
+    padding: 2.2vw 3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.howWrapper {
+    border: 1px solid gray;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.howTxt{
+    border: 1px solid gray;
+    padding: 0vw 2vw;
+}
+
+.tvWrapper {
+    border: 1px solid gray;
+    height: 35vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ans{
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    background-color: #043b4a;
+}
+.botImg{
+    z-index: 2;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    opacity: 0.8;
+
+    background-color: rgb(89, 255, 80);
+}
+
+.voiceWrapper {
+    border: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+.select{
+    border: 1px solid gray;
+    margin-right: 3vw;
+    text-align: center;
+    align-content: center;
+    padding: 0vw 5vw;
+    font-size: var(--regular);
+}
+.speak{
+    border: 1px solid gray;
+    width: 12vw;
+    height: 12vw;
+}
+.mute{
+    border: 1px solid gray;
+    width: 12vw;
+    height: 12vw;
+}
+.clear{
+    border: 1px solid gray;
+    width: 12vw;
+    height: 12vw;
+}
+
+.interimWrapper {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 25vh;
+}
+
+.interim {
+    border: 1px solid gray;
+    height: 10vh;
+    width: 100%;
+}
+
+.btnWrapper{
+    border: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.start {
+    border: 1px solid gray;
+    display: inline-block;
+    height: 8vh;
+    width: 45%;
+    text-align: center;
+    align-content: center;
+    font-size: var(--large);
+}
+
+.stop {
+    border: 1px solid gray;
+    display: inline-block;
+    height: 8vh;
+    width: 45%;
+    text-align: center;
+    align-content: center;
+    font-size: var(--large);
 }

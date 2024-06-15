@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,65 @@
 
   <link rel="stylesheet" href="./style.css" />
 
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+  </style>
 
 </head>
-<body>
-  <div class="mainContainer">
-    <header class="header">Practice AnyTime</header>
 
-    
+<body>
+
+  <div class="appWrapper figtree-appWrapper">
+    <div class="header">
+      SPEAKMATE
+    </div>
+    <div class="middle">
+      <!-- home -->
+      <div class="howWrapper">
+        <div class="howTxt">How to Use</div>
+        <div class="howTxt">Configure AI</div>
+      </div>
+      <div class="tvWrapper">
+        <div class="ans"></div>
+        <div class="botImg"></div>
+      </div>
+      <div class="voiceWrapper">
+        <div class="select">Select Voice</div>
+        <div class="speak"></div>
+        <div class="mute"></div>
+        <div class="clear"></div>
+      </div>
+      <div class="interimWrapper">
+        <div class="interim"></div>
+        <div class="btnWrapper">
+          <div class="start">START</div>
+          <div class="stop">STOP</div>
+        </div>
+      </div>
+    </div>
+    <div class="header">
+      HELP ?
+    </div>
+  </div>
+
+
+  <!--                         OLD  view                                     -->
+
+  <div class="mainContainer">
 
     <textarea class="speechTxt" placeholder="Speech Resuts shows here..."></textarea>
     <div class="speakBtn">Speak</div>
     <div class="cancelBtn">Cancel</div>
     <div class="clearBtn">Clear</div>
-    
+
     <div class="interim"></div>
     <div class="startBtn">Start</div>
     <div class="stopBtn">Stop</div>
 
 
 
-    
+
     <script src="./script.js"></script>
 </body>
+
 </html>
