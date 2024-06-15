@@ -7,6 +7,8 @@
   <title>Speak English</title>
 
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
@@ -27,17 +29,24 @@
         <div class="howTxt">Configure AI</div>
       </div>
       <div class="tvWrapper">
-        <div class="ans"></div>
-        <div class="botImg"></div>
+        <textarea class="ans"></textarea>
+        <img class="botImg" src="./chatbot.png">
       </div>
       <div class="voiceWrapper">
         <div class="select">Select Voice</div>
-        <div class="speak"></div>
-        <div class="mute"></div>
-        <div class="clear"></div>
+        <span class=" speak material-symbols-outlined">
+          volume_up
+        </span>
+        <span class=" mute material-symbols-outlined">
+          volume_off
+        </span>
+        <span class=" clear material-symbols-outlined">
+          delete
+        </span>
       </div>
       <div class="interimWrapper">
-        <div class="interim"></div>
+        <div class="interim">
+        </div>
         <div class="btnWrapper">
           <div class="start">START</div>
           <div class="stop">STOP</div>
@@ -49,24 +58,7 @@
     </div>
   </div>
 
-
-  <!--                         OLD  view                                     -->
-
-  <div class="mainContainer">
-
-    <textarea class="speechTxt" placeholder="Speech Resuts shows here..."></textarea>
-    <div class="speakBtn">Speak</div>
-    <div class="cancelBtn">Cancel</div>
-    <div class="clearBtn">Clear</div>
-
-    <div class="interim"></div>
-    <div class="startBtn">Start</div>
-    <div class="stopBtn">Stop</div>
-
-
-
-
-    <script src="./script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>

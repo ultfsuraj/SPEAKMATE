@@ -1,5 +1,5 @@
 :root {
-    --small : 4vw;
+    --small: 4vw;
     --regular: 5vw;
     --large: 6vw;
 }
@@ -9,95 +9,11 @@
     margin: 0;
     padding: 0;
     user-select: none;
-    overflow: hidden;
+    overflow-x: hidden;
     box-sizing: border-box;
     font-size: var(--regular);
 }
 
-.mainContainer {
-    overflow: hidden;
-}
-
-
-.speakBtn {
-    display: inline-block;
-    width: 20vw;
-    padding: 3.3vw;
-    font-size: 6vw;
-    border: 2px solid rgb(0, 129, 49);
-    text-align: center;
-    color: black;
-    cursor: pointer;
-}
-
-.clearBtn {
-    display: inline-block;
-    width: 20vw;
-    padding: 3.3vw;
-    font-size: 6vw;
-    border: 2px solid rgb(31, 1, 1);
-    text-align: center;
-    color: black;
-    cursor: pointer;
-}
-
-.cancelBtn {
-    display: inline-block;
-    width: 20vw;
-    padding: 3.3vw;
-    font-size: 6vw;
-    border: 2px solid rgb(162, 1, 68);
-    text-align: center;
-    color: black;
-    cursor: pointer;
-}
-
-.startBtn {
-    display: inline-block;
-    width: 40vw;
-    padding: 3.3vw;
-    font-size: 6vw;
-    border: 2px solid rgb(0, 129, 49);
-    text-align: center;
-    color: black;
-    cursor: pointer;
-}
-
-.stopBtn {
-    display: inline-block;
-    width: 40vw;
-    padding: 3.3vw;
-    font-size: 6vw;
-    border: 2px solid rgb(162, 1, 1);
-    text-align: center;
-    color: black;
-    cursor: pointer;
-}
-
-.speechTxt {
-    width: 90vw;
-    height: 60vw;
-    padding: 3.3vw;
-    text-wrap: wrap;
-    border: 2px solid gray;
-    user-select: all;
-    text-align: center;
-    align-content: center;
-}
-
-.interim {
-    width: 95%;
-    padding: 2.2vw;
-    color: black;
-    border: 1px solid gray;
-    height: 8vw;
-    user-select: all;
-}
-
-
-
-
-/* ............................................... */
 
 .appWrapper {
     height: 100vh;
@@ -130,80 +46,129 @@
     background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
     flex-grow: 1;
     font-family: inherit;
-    padding: 2.2vw 3vw;
+    padding: 2.2vw 4vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
 .howWrapper {
-    border: 1px solid gray;
     height: 5vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: rgb(0, 33, 61);
+
 }
 
-.howTxt{
-    border: 1px solid gray;
+.howTxt {
     padding: 0vw 2vw;
+
 }
 
 .tvWrapper {
-    border: 1px solid gray;
-    height: 35vh;
+    height: 30vh;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: all;
+    border: 2vw solid rgb(0, 21, 50);
+    border-radius: 10%;
 }
-.ans{
-    width: 90%;
-    height: 90%;
+
+@keyframes randomBorder {
+    0% {
+        border-color: rgb(0, 21, 50);
+    }
+
+    50% {
+        border-color: rgb(162, 162, 162);
+    }
+
+    100% {
+        border-color: rgb(0, 21, 50);
+    }
+}
+
+.ans {
+    width: 100%;
+    height: 100%;
+    padding: 6vw 3vw;
+    text-align: center;
+    align-content: center;
+    text-wrap: wrap;
+    overflow-y: scroll;
     position: absolute;
-    background-color: #043b4a;
+    background-color: white;
+    color: rgb(1, 43, 66);
+    font-size: var(--small);
+    font-weight: 700;
+    user-select: all;
+    border: none;
 }
-.botImg{
+
+
+.botImg {
     z-index: 2;
     width: 50%;
-    height: 50%;
     position: absolute;
-    opacity: 0.8;
+    opacity: 0.2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
 
-    background-color: rgb(89, 255, 80);
+@keyframes botblink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .voiceWrapper {
-    border: 1px solid gray;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.select{
-    border: 1px solid gray;
+
+.voiceWrapper span {
+    align-content: center;
+    font-size: 8vw;
+}
+
+.select {
     margin-right: 3vw;
     text-align: center;
     align-content: center;
-    padding: 0vw 5vw;
+    padding: 2vw 4vw;
     font-size: var(--regular);
+    background-color: #004AAD;
+    border: 1vw solid #0046a1;
+    color: white;
+    letter-spacing: 0.5vw;
+    font-weight: 500;
 }
+
 .speak{
-    border: 1px solid gray;
-    width: 12vw;
-    height: 12vw;
+
 }
-.mute{
-    border: 1px solid gray;
-    width: 12vw;
-    height: 12vw;
+
+.mute {
+    color: rgb(138, 0, 0);
 }
-.clear{
-    border: 1px solid gray;
-    width: 12vw;
-    height: 12vw;
+
+.clear {
+    color: rgb(66, 66, 66);
 }
 
 .interimWrapper {
-    border: 1px solid gray;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -214,30 +179,43 @@
     border: 1px solid gray;
     height: 10vh;
     width: 100%;
+    background-color: rgb(242, 251, 251);
+    overflow-y: scroll;
+    text-wrap: wrap;
+    font-size: var(--small);
+    font-weight: 500;
+    padding: 2vw;
+    line-height: 1.3em;
+    align-content: center;
+    text-align: center;
 }
 
-.btnWrapper{
-    border: 1px solid gray;
+.btnWrapper {
     display: flex;
     justify-content: space-between;
+    letter-spacing: 0.6vw;
+    font-weight: 800;
 }
 
 .start {
     border: 1px solid gray;
     display: inline-block;
-    height: 8vh;
-    width: 45%;
+    height: 7vh;
+    width: 42%;
     text-align: center;
     align-content: center;
     font-size: var(--large);
+    background-color: #67DB00;
 }
 
 .stop {
     border: 1px solid gray;
     display: inline-block;
-    height: 8vh;
-    width: 45%;
+    height: 7vh;
+    width: 42%;
     text-align: center;
     align-content: center;
     font-size: var(--large);
+    background-color: #D40000;
+    color: white;
 }

@@ -12,7 +12,7 @@ let rate = 1
 let speak = true;
 let voices = window.speechSynthesis.getVoices() || []
 const stopText = "stop recognition"
-const waitMsg =  ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second'] 
+const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (!SpeechRecognition) {
@@ -22,11 +22,13 @@ const recognition = new SpeechRecognition();
 recognition.continuous = true;
 recognition.interimResults = true;
 recognition.lang = 'en-US';
-const startBtn = document.querySelector('.startBtn')
-const stopBtn = document.querySelector('.stopBtn')
-const speechTxt = document.querySelector('.speechTxt')
+const startBtn = document.querySelector('.start')
+const stopBtn = document.querySelector('.stop')
+const answer = document.querySelector('.ans')
 const interimTxt = document.querySelector('.interim')
-const cancelBtn = document.querySelector('.cancelBtn')
+const cancelBtn = document.querySelector('.mute')
+const botImg = document.querySelector('.botImg')
+const tvWrapper = document.querySelector('.tvWrapper')
 
 const BUFFER = {
     length: 0,
@@ -40,15 +42,15 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     utterThis.pitch = pitch;
     utterThis.rate = rate;
     utterThis.onstart = () => {
-        speechTxt.value = ""
+        answer.value = ""
         BUFFER.text = stopText
         recognition.stop()
-        speechTxt.value = text
+        answer.value = text
     }
     utterThis.onend = () => {
         BUFFER.text = ''
-        speechTxt.value = ""
-        if(!waitMsg.includes(text) && !speak){
+        answer.value = ""
+        if (!waitMsg.includes(text) && !speak) {
             recognition.start()
         }
     }
@@ -78,28 +80,28 @@ recognition.onerror = (event) => {
 
 recognition.onend = () => {
     let index = BUFFER.text.toLocaleLowerCase().indexOf(stopText)
-    if(index<0){
+    if (index < 0) {
         recognition.start()
     }
     BUFFER.text.trim()
     if (index >= 0) {
-        speechTxt.value += BUFFER.text.substring(0, index)
-    } else if (BUFFER.text.length >0) {
-        speechTxt.value += BUFFER.text + ". "
+        answer.value += BUFFER.text.substring(0, index)
+    } else if (BUFFER.text.length > 0) {
+        answer.value += BUFFER.text + ". "
     }
     setTimeout(() => interimTxt.textContent = "", 500)
     startBtn.disabled = false;
     stopBtn.disabled = true;
-    if (index>-1) {
+    if (index > -1) {
         recognition.stop();
-        if (speechTxt.value.length > 0) {
-            sendMessage(speechTxt.value)
-            speechTxt.value = ''
+        if (answer.value.length > 0) {
+            sendMessage(answer.value)
+            answer.value = ''
             BUFFER.text = ''
         }
         return
     }
-    
+
     BUFFER.text = ''
     recognition.start();
 };
@@ -112,8 +114,8 @@ startBtn.addEventListener('click', () => {
 
 stopBtn.addEventListener('click', () => {
     // enable speak button
-    speak= true;
-    speechTxt.value = ''
+    speak = true;
+    answer.value = ''
     BUFFER.text = stopText
     window.speechSynthesis.cancel()
     recognition.stop();
@@ -121,7 +123,7 @@ stopBtn.addEventListener('click', () => {
 
 cancelBtn.addEventListener('click', () => {
     window.speechSynthesis.cancel()
-    speechTxt.value = ''
+    answer.value = ''
     BUFFER.text = ''
     recognition.start()
 })
@@ -131,17 +133,17 @@ speechSynthesis.onvoiceschanged = () => {
 }
 
 
-const speakBtn = document.querySelector(".speakBtn")
+const speakBtn = document.querySelector(".speak")
 
 speakBtn.addEventListener("click", () => {
-    if(speak){
-        tellMe(speechTxt.value, 7, 0.95, 1)
+    if (speak) {
+        tellMe(answer.value, 7, 0.95, 1)
     }
 })
 
-const clearBtn = document.querySelector(".clearBtn")
+const clearBtn = document.querySelector(".clear")
 clearBtn.addEventListener("click", () => {
-    speechTxt.value = ""
+    answer.value = ""
 })
 
 
@@ -151,9 +153,12 @@ const sendMessage = async (prompt) => {
         prompt: prompt + "correct above question and answer in brief without mentioning corrected question."
     }
 
-    setTimeout(()=>{
-        tellMe(waitMsg[ Math.floor(Math.random() * (waitMsg.length))], 3, 0.95, 1)
-    } , 2000)
+    botImg.style.animation = "botblink 1.5s 3s ease-in-out infinite"
+    tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
+
+    setTimeout(() => {
+        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], 3, 0.95, 1)
+    }, 2500)
 
     try {
         const response = await fetch('https://withered-frog-d5b7.purkufirte.workers.dev/', {
@@ -169,7 +174,10 @@ const sendMessage = async (prompt) => {
         }
 
         const data = await response.json()
-        speechTxt.value = ""
+        answer.value = ""
+        botImg.style.animation = "none"
+        tvWrapper.style.animation = "none"
+
         tellMe(data?.result?.response, 3, 0.95, 1)
 
     } catch (error) {
