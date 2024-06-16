@@ -24,34 +24,83 @@
     </div>
     <div class="middle">
       <!-- home -->
-      <div class="howWrapper">
-        <div class="howTxt">How to Use</div>
-        <div class="howTxt">Configure AI</div>
-      </div>
-      <div class="tvWrapper">
-        <textarea class="ans"></textarea>
-        <img class="botImg" src="./chatbot.png">
-      </div>
-      <div class="voiceWrapper">
-        <div class="select">Select Voice</div>
-        <span class=" speak material-symbols-outlined">
-          volume_up
-        </span>
-        <span class=" mute material-symbols-outlined">
-          volume_off
-        </span>
-        <span class=" clear material-symbols-outlined">
-          delete
-        </span>
-      </div>
-      <div class="interimWrapper">
-        <div class="interim">
+      <section id="homeSection">
+        <div class="howWrapper">
+          <div class="howTxt">How to Use</div>
+          <div class="howTxt">Configure AI</div>
         </div>
-        <div class="btnWrapper">
-          <div class="start">START</div>
-          <div class="stop">STOP</div>
+        <div class="tvWrapper">
+          <textarea class="ans"></textarea>
+          <img class="botImg" src="./chatbot.png">
         </div>
-      </div>
+        <div class="voiceWrapper">
+          <div class="select">Select Voice</div>
+          <span class=" speak material-symbols-outlined">
+            volume_up
+          </span>
+          <span class=" mute material-symbols-outlined">
+            volume_off
+          </span>
+          <span class=" clear material-symbols-outlined">
+            delete
+          </span>
+        </div>
+        <div class="interimWrapper">
+          <div class="interim">
+          </div>
+          <div class="btnWrapper">
+            <div class="start">START</div>
+            <div class="stop">STOP</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- how to use -->
+       <section id="howToSection">
+        <div class="psmWrapper">
+          <div>
+
+            <label>
+              Pitch :    
+              <input type="range" name="pitch" min="0.2" max="2" value="1" step="0.1" id="pitch"/>
+            </label>
+          </div>
+          <div>
+            <label>
+              Speed :    
+              <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate"/>
+            </label>
+          </div>
+          <div>
+            <label>
+              Model :    
+              <input type="text" placeholder=" Enter Model Name ..." id="modelname"/>
+            </label>
+          </div>
+        </div>
+        <p class="helpTxt">Retry after changing above settings. </br>
+          If that didn’t work , click on <strong>HELP ?</strong></p>
+        <div class="amaWrapper">
+         
+            <label>
+              Account ID :    
+              <input type="text" placeholder=" Enter Account ID " id="accountid"/>
+            </label>
+          
+          
+            <label>
+              Model URL : 
+              <input type="text" placeholder=" Enter Model URL" id="workerurl" />
+            </label>
+         
+          
+            <label>
+              Access KEY :   
+              <input type="text" placeholder=" Enter Access KEY"  id="token"/>
+            </label>
+         
+        </div>
+       </section>
     </div>
     <div class="header">
       HELP ?

@@ -30,6 +30,38 @@
     font-style: normal;
 }
 
+
+
+.middle {
+    flex-grow: 1;
+    font-family: inherit;
+    position: relative;
+}
+
+#homeSection, #howToSection {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2.2vw 5vw 2.2vw 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#homeSection{
+    background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
+}
+
+#howToSection{
+    /* opacity: 0; */
+    opacity: 0.97;
+    /* z-index: -1; */
+    z-index: 2;
+    background-image: linear-gradient(to right,#000000, #3C6248)
+}
+
 .header {
     background-color: #000000;
     font-family: inherit;
@@ -39,17 +71,6 @@
     letter-spacing: 1vw;
     color: white;
     text-align: center;
-}
-
-
-.middle {
-    background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
-    flex-grow: 1;
-    font-family: inherit;
-    padding: 2.2vw 4vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .howWrapper {
@@ -218,4 +239,54 @@
     font-size: var(--large);
     background-color: #D40000;
     color: white;
+}
+
+.psmWrapper,.amaWrapper{
+    height: 25vh;
+    width: 90%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.psmWrapper div{
+    height: 30%;
+    align-content: center;
+}
+.psmWrapper label{
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--regular);
+}
+.psmWrapper input[type="text"]{
+    padding: 1vw;
+    width: 70%;
+    font-size: var(--small);
+    letter-spacing: 1.5px;
+}
+.psmWrapper input[type="range"]{
+    width: 70%;
+}
+
+.helpTxt{
+    color: #F0FFE0;
+    font-size: var(--regular);
+    font-weight: 500;
+    line-height: 1.5em;
+}
+.helpTxt strong{
+    color: #4DFF00;
+}
+.amaWrapper{
+    height: 40vh;
+    padding-bottom: 5vh;
+}
+.amaWrapper input[type="text"]{
+    padding: 1vw;
+    width: 90%;
+    font-size: var(--small);
+    letter-spacing: 1.5px;
+}
+.amaWrapper label{
+    line-height: 1.7em;
 }
