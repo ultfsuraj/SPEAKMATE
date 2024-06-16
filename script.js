@@ -9,6 +9,10 @@ if (!('speechSynthesis' in window)) {
 
 let pitch = 0.95
 let rate = 1
+let modelName = ''
+let accountID = ''
+let token = ''
+let workerURL = 'https://withered-frog-d5b7.purkufirte.workers.dev/'
 let speak = true;
 let voiceIndex = 0;
 let voices = window.speechSynthesis.getVoices() || []
@@ -36,6 +40,13 @@ const howToSec = document.querySelector('#howToSection')
 const configSec = document.querySelector('#configSection')
 const chooseVoice = document.querySelector('.select')
 const voicesContainer = document.querySelector('.voicesContainer')
+const pitchTxt = document.querySelector('#pitch')
+const rateTxt = document.querySelector('#rate')
+const modelnameTxt = document.querySelector('#modelname')
+const accountidTxt = document.querySelector('#accountid')
+const workerurlTxt = document.querySelector('#workerurl')
+const tokenTxt = document.querySelector('#token')
+
 
 const BUFFER = {
     length: 0,
@@ -163,7 +174,7 @@ const speakBtn = document.querySelector(".speak")
 
 speakBtn.addEventListener("click", () => {
     if (speak) {
-        tellMe(answer.value, voiceIndex, 0.95, 1)
+        tellMe(answer.value, voiceIndex, pitch, rate)
     }
 })
 
@@ -183,11 +194,11 @@ const sendMessage = async (prompt) => {
     tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
 
     setTimeout(() => {
-        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, 0.95, 1)
+        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate)
     }, 2500)
 
     try {
-        const response = await fetch('https://withered-frog-d5b7.purkufirte.workers.dev/', {
+        const response = await fetch(workerURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -204,7 +215,7 @@ const sendMessage = async (prompt) => {
         botImg.style.animation = "none"
         tvWrapper.style.animation = "none"
 
-        tellMe(data?.result?.response, voiceIndex, 0.95, 1)
+        tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
         console.error('Error:', error)
@@ -246,3 +257,33 @@ voicesContainer.addEventListener('click',(e)=>{
     voiceIndex = e.target.getAttribute('data-key')
     setTimeout(()=>chooseVoice.click(), 300)
 })
+
+function changePitch(){
+    pitch = pitchTxt.value
+    console.log(pitch)
+}
+
+function changeRate(){
+    rate = rateTxt.value
+    console.log(rate)
+}
+
+function changeModelName(){
+    modelName = modelnameTxt.value
+    console.log(modelName)
+}
+
+function changeAccountID(){
+    accountID = accountidTxt.value
+    console.log(accountID)
+}
+
+function changeWorkerURL(){
+    workerURL = workerurlTxt.value 
+    console.log(workerURL)
+}
+
+function changeToken(){
+    token = tokenTxt.value
+    console.log(token)
+}

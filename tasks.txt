@@ -19,3 +19,4 @@ PENDING
 9. remember conversation : can store in local storate. and send all of the conversations at once. 
 10. what to do when there's a long delay in network. 
 11. disable speak button during conversation, disable cancel button when not speaking 
+12. issue Google assistant voice is taking over and i'm unable to choose a voice, although it's available in browser (chrome android)
