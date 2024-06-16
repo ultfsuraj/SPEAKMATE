@@ -39,28 +39,41 @@
     position: relative;
 }
 
-#homeSection, #howToSection {
+#homeSection,
+#howToSection,
+#configSection {
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0vw 5vw 2.2vw 10vw;
+    padding: 2.2vw 5vw 2.2vw 10vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-#homeSection{
+#homeSection {
     background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
 }
 
-#howToSection{
+#configSection {
+    opacity: 0;
+    opacity: 0.97;
+    z-index: -1;
+    background-image: linear-gradient(to right, #000000, #3C6248);
+
+}
+
+#howToSection {
     /* opacity: 0; */
     opacity: 0.97;
     /* z-index: -1; */
     z-index: 2;
-    background-image: linear-gradient(to right,#000000, #3C6248)
+    background-image: linear-gradient(to right, #000000, #704A4A);
+    color: white;
+    padding-top: 4vw;
+    justify-content: space-evenly;
 }
 
 .header {
@@ -178,9 +191,7 @@
     font-weight: 500;
 }
 
-.speak{
-
-}
+.speak {}
 
 .mute {
     color: rgb(138, 0, 0);
@@ -242,7 +253,8 @@
     color: white;
 }
 
-.psmWrapper,.amaWrapper{
+.psmWrapper,
+.amaWrapper {
     height: 25vh;
     width: 85%;
     color: white;
@@ -250,55 +262,105 @@
     flex-direction: column;
     justify-content: space-around;
 }
-.psmWrapper div{
+
+.psmWrapper div {
     height: 30%;
     align-content: center;
 }
-.psmWrapper label{
+
+.psmWrapper label {
     display: flex;
     justify-content: space-between;
     font-size: var(--regular);
 }
-.psmWrapper input[type="text"]{
+
+.psmWrapper input[type="text"] {
     padding: 1vw;
     width: 70%;
     font-size: var(--small);
     letter-spacing: 1.5px;
 }
-.psmWrapper input[type="range"]{
+
+.psmWrapper input[type="range"] {
     width: 70%;
 }
 
-.helpTxt{
+.helpTxt {
     color: #F0FFE0;
     font-size: var(--regular);
     font-weight: 500;
     line-height: 1.5em;
 }
-.helpTxt strong{
+
+.helpTxt strong {
     color: #4DFF00;
 }
-.amaWrapper{
+
+.amaWrapper {
     height: 40vh;
     padding-bottom: 5vh;
 }
-.amaWrapper input[type="text"]{
+
+.amaWrapper input[type="text"] {
     padding: 1vw;
     width: 100%;
     font-size: var(--small);
     letter-spacing: 1.5px;
 }
-.amaWrapper label{
+
+.amaWrapper label {
     line-height: 1.7em;
 }
-.cross{
+
+.cross {
     position: absolute;
     top: 1vw;
     right: 5vw;
 }
-.cross span{
+
+.cross span {
     font-size: var(--xlarge);
     color: white;
     font-weight: 700;
     display: inline;
 }
+
+.demolink{
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #F0FFE0;
+}
+.steps h3{
+    padding-bottom: 2.2vw;
+}
+
+ li{
+    font-size: var(--small);
+    font-weight: 500;
+    padding: 0vw 2vw 1vw 3vw;
+    line-height: 1.7em;
+    letter-spacing: 1px;
+    display: block;
+} 
+
+ul.custom-bullets {
+    list-style: none; /* Remove default bullets */
+    padding-left: 2vw; /* Adjust padding to make space for custom bullets */
+  }
+
+  ul.custom-bullets li {
+    position: relative; /* Positioning context for the ::before pseudo-element */
+    padding-left: 5vw; /* Space for the custom bullet */
+
+  }
+
+  ul.custom-bullets li::before {
+    content: ''; /* No text content, just a bullet */
+    position: absolute; /* Position it relative to the list item */
+    left: 0; /* Align to the left of the list item */
+    top: 0.5em; /* Adjust vertically as needed */
+    width: 2vw; /* Custom bullet width */
+    height: 2vw; /* Custom bullet height */
+    background-color: white; /* Bullet color */
+    border-radius: 50%; /* Make it a circle */
+  }

@@ -55,58 +55,85 @@
         </div>
       </section>
 
-      <!-- how to use -->
-       <section id="howToSection">
+      <!-- config ai -->
+      <section id="configSection">
         <div class="cross">
           <span class="material-symbols-outlined">
             close
-            </span>
+          </span>
         </div>
         <div class="psmWrapper">
-          
+
           <div>
 
             <label>
-              Pitch :    
-              <input type="range" name="pitch" min="0.2" max="2" value="1" step="0.1" id="pitch"/>
+              Pitch :
+              <input type="range" name="pitch" min="0.2" max="2" value="1" step="0.1" id="pitch" />
             </label>
           </div>
           <div>
             <label>
-              Speed :    
-              <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate"/>
+              Speed :
+              <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate" />
             </label>
           </div>
           <div>
             <label>
-              Model :    
-              <input type="text" placeholder=" Enter Model Name ..." id="modelname"/>
+              Model :
+              <input type="text" placeholder=" Enter Model Name ..." id="modelname" />
             </label>
           </div>
         </div>
         <p class="helpTxt">Retry after changing above settings. </br>
           If that didn’t work , click on <strong>HELP ?</strong></p>
         <div class="amaWrapper">
-         
-            <label>
-              Account ID :    
-              <input type="text" placeholder=" Enter Account ID " id="accountid"/>
-            </label>
-          
-          
-            <label>
-              Model URL : 
-              <input type="text" placeholder=" Enter Model URL" id="workerurl" />
-            </label>
-         
-          
-            <label>
-              Access KEY :   
-              <input type="text" placeholder=" Enter Access KEY"  id="token"/>
-            </label>
-         
+
+          <label>
+            Account ID :
+            <input type="text" placeholder=" Enter Account ID " id="accountid" />
+          </label>
+
+
+          <label>
+            Model URL :
+            <input type="text" placeholder=" Enter Model URL" id="workerurl" />
+          </label>
+
+
+          <label>
+            Access KEY :
+            <input type="text" placeholder=" Enter Access KEY" id="token" />
+          </label>
+
         </div>
-       </section>
+      </section>
+
+      <!-- how to use  -->
+      <section id="howToSection">
+        <div class="cross">
+          <span class="material-symbols-outlined">
+            close
+          </span>
+        </div>
+        <p class="demolink">Watch this DEMO to learn how </br> to use the WebApp. <strong style="color: #23DEFF; text-decoration: underline;">Video Link</strong></p>
+        <div class="steps">
+          <h3 class="demolink">Steps in Brief : </h3>
+          <ul class="custom-bullets">
+            <li>It’s just like a normal conversation.</br> click on <strong style="color: #4DFF00">START</strong> to turn on the mic.
+            </li>
+            <li>Your speech will show up in the</br> text-area. it is editable. AI will likely correct errors in your
+              question.
+            </li>
+            <li>Mic turns off if silence is detected </br>but it turns on again, untill you say </br<strong style="color: #FF5757">STOP</strong>. or say </br><strong style="color: #e5ff24">“STOP RECOGNITION”</strong>. Then
+              whateveris written on the text-area is sent to AI.
+            </li>
+            <li>To stop conversation at any time </br>click on <strong style="color: #FF5757">STOP</strong>. or say </br><strong style="color: #e5ff24">“STOP RECOGNITION”</strong> after AI has spoken.</li>
+          </ul>
+        </div>
+        <div class="demolink">Explore Other Features....</div>
+        
+      </section>
+
     </div>
     <div class="header">
       HELP ?
