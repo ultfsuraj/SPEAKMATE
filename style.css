@@ -41,7 +41,8 @@
 
 #homeSection,
 #howToSection,
-#configSection {
+#configSection,
+#helpSection {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -58,7 +59,6 @@
 }
 
 #configSection {
-    opacity: 0;
     opacity: 0.97;
     z-index: -1;
     background-image: linear-gradient(to right, #000000, #3C6248);
@@ -66,14 +66,25 @@
 }
 
 #howToSection {
-    /* opacity: 0; */
     opacity: 0.97;
-    /* z-index: -1; */
-    z-index: 2;
+    z-index: -1;
     background-image: linear-gradient(to right, #000000, #543434);
     color: white;
     padding-top: 4vw;
     justify-content: space-evenly;
+}
+#helpSection {
+    opacity: 0.97;
+    z-index: -1;
+    background-image: linear-gradient(to right, #000000, #3C5B62);
+    color: white;
+    justify-content: space-evenly;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+    font-weight: 500;
+    line-height: 1.5em;
+    letter-spacing: 1px;
+    font-size: var(--small);
 }
 
 .header {
@@ -363,4 +374,14 @@ ul.custom-bullets {
     height: 2vw; /* Custom bullet height */
     background-color: white; /* Bullet color */
     border-radius: 50%; /* Make it a circle */
+  }
+
+  .reason{
+    color: #F0FFE0;
+  }
+
+  .safety{
+    color: #D40000;
+    background-color: white;
+    padding: 2vw;
   }

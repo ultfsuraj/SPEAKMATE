@@ -29,6 +29,11 @@ const interimTxt = document.querySelector('.interim')
 const cancelBtn = document.querySelector('.mute')
 const botImg = document.querySelector('.botImg')
 const tvWrapper = document.querySelector('.tvWrapper')
+const homeSec = document.querySelector('#homeSection')
+const helpSec = document.querySelector('#helpSection')
+const howToSec = document.querySelector('#howToSection')
+const configSec = document.querySelector('#configSection')
+
 
 const BUFFER = {
     length: 0,
@@ -187,3 +192,24 @@ const sendMessage = async (prompt) => {
 }
 
 
+function closeHelp(close){
+    if(close){
+        helpSec.style.zIndex = -1;
+    }else{
+        helpSec.style.zIndex = 3;
+    }
+}
+function closeHowTo(close){
+    if(close){
+        howToSec.style.zIndex = -1;
+    }else{
+        howToSec.style.zIndex = 3;
+    }
+}
+function closeConfig(close){
+    if(close){
+        configSec.style.zIndex = -1;
+    }else{
+        configSec.style.zIndex = 3;
+    }
+}

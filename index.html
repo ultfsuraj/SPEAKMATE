@@ -26,8 +26,8 @@
       <!-- home -->
       <section id="homeSection">
         <div class="howWrapper">
-          <div class="howTxt">How to Use</div>
-          <div class="howTxt">Configure AI</div>
+          <div class="howTxt" onclick="closeHowTo(false)">How to Use</div>
+          <div class="howTxt" onclick="closeConfig(false)">Configure AI</div>
         </div>
         <div class="tvWrapper">
           <textarea class="ans"></textarea>
@@ -57,7 +57,7 @@
 
       <!-- config ai -->
       <section id="configSection">
-        <div class="cross">
+        <div class="cross" onclick="closeConfig(true)">
           <span class="material-symbols-outlined">
             close
           </span>
@@ -110,7 +110,7 @@
 
       <!-- how to use  -->
       <section id="howToSection">
-        <div class="cross">
+        <div class="cross" onclick="closeHowTo(true)">
           <span class="material-symbols-outlined">
             close
           </span>
@@ -134,8 +134,27 @@
         
       </section>
 
+      <!-- help ?  -->
+       <section id="helpSection">
+        <div class="cross" onclick="closeHelp(true)">
+          <span class="material-symbols-outlined">
+            close
+          </span>
+        </div>
+
+        <p class="reason">The daily question limit might have exceeded, as the default account is being used by many.</p>
+        <p class="required">You’ll need a separate </br>
+          <strong style="color: #4DFF00">ACCOUNT ID, MODEL URL, ACCESS KEY </strong></p>
+        <p>Visit my channel </br>
+          <a href="https://www.youtube.com/@UnlockLifetimeFitness-jp2hn"><span style="color: #23DEFF; text-decoration: underline;">UnlockLifetimeFitness-jp2hn</span></a> </br>
+          for updated contact info </br>
+          ( instagram / gmail ) and send</br>
+          <strong style="color: #4DFF00">SPEAKMATE CREDENTIAL</strong></p>
+          <p class="safety">None of Your Personal Details will be used for the above purpose.                  </p>
+       </section>
+
     </div>
-    <div class="header">
+    <div class="header" onclick="closeHelp(false)">
       HELP ?
     </div>
   </div>
