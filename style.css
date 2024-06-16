@@ -2,6 +2,7 @@
     --small: 4vw;
     --regular: 5vw;
     --large: 6vw;
+    --xlarge: 8vw;
 }
 
 
@@ -44,7 +45,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 2.2vw 5vw 2.2vw 10vw;
+    padding: 0vw 5vw 2.2vw 10vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -161,7 +162,7 @@
 
 .voiceWrapper span {
     align-content: center;
-    font-size: 8vw;
+    font-size: var(--xlarge);
 }
 
 .select {
@@ -243,7 +244,7 @@
 
 .psmWrapper,.amaWrapper{
     height: 25vh;
-    width: 90%;
+    width: 85%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -283,10 +284,21 @@
 }
 .amaWrapper input[type="text"]{
     padding: 1vw;
-    width: 90%;
+    width: 100%;
     font-size: var(--small);
     letter-spacing: 1.5px;
 }
 .amaWrapper label{
     line-height: 1.7em;
+}
+.cross{
+    position: absolute;
+    top: 1vw;
+    right: 5vw;
+}
+.cross span{
+    font-size: var(--xlarge);
+    color: white;
+    font-weight: 700;
+    display: inline;
 }
