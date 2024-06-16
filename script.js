@@ -244,4 +244,5 @@ voicesContainer.addEventListener('click',(e)=>{
     e.target.classList.add('voiceActive')
     voicesContext.prevEle = e.target
     voiceIndex = e.target.getAttribute('data-key')
+    setTimeout(()=>chooseVoice.click(), 300)
 })
