@@ -96,6 +96,7 @@
     letter-spacing: 1vw;
     color: white;
     text-align: center;
+    cursor: pointer;
 }
 
 .howWrapper {
@@ -109,7 +110,7 @@
 
 .howTxt {
     padding: 0vw 2vw;
-
+    cursor: pointer;
 }
 
 .tvWrapper {
@@ -181,7 +182,9 @@
 
 .voiceWrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    position: relative;
+    overflow: visible;
 }
 
 .voiceWrapper span {
@@ -200,6 +203,31 @@
     color: white;
     letter-spacing: 0.5vw;
     font-weight: 500;
+    cursor: pointer;
+}
+
+.voicesContainer{
+    position: absolute;
+    left: 0;
+    top: 102%;
+    border: 1px solid black;
+    width: 60vw;
+    height: 20vh;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.voice{
+    border-bottom: 1px solid gray;
+    background-color: rgb(255, 255, 247);
+    font-size: var(--small);
+    font-weight: 500;
+    padding: 2vw 1vw;
+}
+.voiceActive{
+    background-color: rgb(238, 249, 251);
+}
+.hide{
+    display: none;
 }
 
 .speak {}
@@ -250,6 +278,7 @@
     align-content: center;
     font-size: var(--large);
     background-color: #67DB00;
+    cursor: pointer;
 }
 
 .stop {
@@ -262,6 +291,7 @@
     font-size: var(--large);
     background-color: #D40000;
     color: white;
+    cursor: pointer;
 }
 
 .psmWrapper,
@@ -385,3 +415,4 @@ ul.custom-bullets {
     background-color: white;
     padding: 2vw;
   }
+

@@ -10,6 +10,7 @@ if (!('speechSynthesis' in window)) {
 let pitch = 0.95
 let rate = 1
 let speak = true;
+let voiceIndex = 0;
 let voices = window.speechSynthesis.getVoices() || []
 const stopText = "stop recognition"
 const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
@@ -33,13 +34,17 @@ const homeSec = document.querySelector('#homeSection')
 const helpSec = document.querySelector('#helpSection')
 const howToSec = document.querySelector('#howToSection')
 const configSec = document.querySelector('#configSection')
-
+const chooseVoice = document.querySelector('.select')
+const voicesContainer = document.querySelector('.voicesContainer')
 
 const BUFFER = {
     length: 0,
     text: ''
 }
-
+const voicesContext = {
+    active: 0 ,
+    prevEle: {},
+}
 
 const tellMe = (text, voiceIndex, pitch, rate) => {
     let utterThis = new SpeechSynthesisUtterance(text);
@@ -54,7 +59,9 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     }
     utterThis.onend = () => {
         BUFFER.text = ''
-        answer.value = ""
+        if(!speak){
+            answer.value = ""
+        }
         if (!waitMsg.includes(text) && !speak) {
             recognition.start()
         }
@@ -114,6 +121,9 @@ recognition.onend = () => {
 startBtn.addEventListener('click', () => {
     // disable speak button
     speak = false;
+    answer.value = ''
+    BUFFER.text = ''
+    window.speechSynthesis.cancel()
     recognition.start();
 });
 
@@ -135,6 +145,17 @@ cancelBtn.addEventListener('click', () => {
 
 speechSynthesis.onvoiceschanged = () => {
     voices = window.speechSynthesis.getVoices();
+    voices.forEach((voice,index)=>{
+        let div = document.createElement('div')
+        div.classList.add('voice')
+        if(index == voiceIndex){
+            div.classList.add('voiceActive')
+            voicesContext.prevEle = div 
+        }
+        div.setAttribute('data-key',index)
+        div.innerText = voice.name 
+        voicesContainer.appendChild(div)
+    })
 }
 
 
@@ -142,7 +163,7 @@ const speakBtn = document.querySelector(".speak")
 
 speakBtn.addEventListener("click", () => {
     if (speak) {
-        tellMe(answer.value, 7, 0.95, 1)
+        tellMe(answer.value, voiceIndex, 0.95, 1)
     }
 })
 
@@ -162,7 +183,7 @@ const sendMessage = async (prompt) => {
     tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
 
     setTimeout(() => {
-        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], 3, 0.95, 1)
+        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, 0.95, 1)
     }, 2500)
 
     try {
@@ -183,7 +204,7 @@ const sendMessage = async (prompt) => {
         botImg.style.animation = "none"
         tvWrapper.style.animation = "none"
 
-        tellMe(data?.result?.response, 3, 0.95, 1)
+        tellMe(data?.result?.response, voiceIndex, 0.95, 1)
 
     } catch (error) {
         console.error('Error:', error)
@@ -213,3 +234,14 @@ function closeConfig(close){
         configSec.style.zIndex = 3;
     }
 }
+
+chooseVoice.addEventListener('click',()=>{
+    voicesContainer.classList.toggle('hide')
+})
+
+voicesContainer.addEventListener('click',(e)=>{
+    voicesContext.prevEle.classList.remove('voiceActive')
+    e.target.classList.add('voiceActive')
+    voicesContext.prevEle = e.target
+    voiceIndex = e.target.getAttribute('data-key')
+})
