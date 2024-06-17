@@ -14,6 +14,22 @@
     @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
   </style>
 
+  <script type="text/javascript">
+    const aspect = 0.6
+    const calculateVW = ()=>{
+      let currAspect = window.innerWidth / window.innerHeight;
+      if(currAspect > aspect){
+        let newVW = 100*(aspect/currAspect)
+        console.log(currAspect, newVW, window.innerWidth, window.innerHeight)
+        document.documentElement.style.setProperty('--customVW', `${newVW}vw`);
+      }
+    }
+    
+    calculateVW()
+    window.addEventListener('resize',()=>calculateVW())
+  
+  </script>
+
 </head>
 
 <body>
