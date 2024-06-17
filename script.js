@@ -67,15 +67,21 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
         BUFFER.text = stopText
         recognition.stop()
         answer.value = text
+        cancelBtn.ariaDisabled = false
+        speakBtn.ariaDisabled = true
     }
     utterThis.onend = () => {
         BUFFER.text = ''
         if(!speak){
             answer.value = ""
+        }else{
+            speakBtn.ariaDisabled = false
         }
         if (!waitMsg.includes(text) && !speak) {
             recognition.start()
         }
+        cancelBtn.ariaDisabled = true
+        
     }
 
     window.speechSynthesis?.speak(utterThis);
@@ -83,8 +89,8 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
 
 
 recognition.onstart = () => {
-    startBtn.disabled = true
-    stopBtn.disabled = false
+    startBtn.ariaDisabled = true
+    stopBtn.ariaDisabled = false
 };
 
 
@@ -113,8 +119,8 @@ recognition.onend = () => {
         answer.value += BUFFER.text + ". "
     }
     setTimeout(() => interimTxt.textContent = "", 500)
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
+    startBtn.ariaDisabled = false;
+    stopBtn.ariaDisabled = true;
     if (index > -1) {
         recognition.stop();
         if (answer.value.length > 0) {
@@ -130,7 +136,7 @@ recognition.onend = () => {
 };
 
 startBtn.addEventListener('click', () => {
-    // disable speak button
+    speakBtn.ariaDisabled = true
     speak = false;
     answer.value = ''
     BUFFER.text = ''
@@ -139,7 +145,8 @@ startBtn.addEventListener('click', () => {
 });
 
 stopBtn.addEventListener('click', () => {
-    // enable speak button
+    speakBtn.ariaDisabled = false
+    cancelBtn.ariaDisabled = true
     speak = true;
     answer.value = ''
     BUFFER.text = stopText

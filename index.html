@@ -36,10 +36,10 @@
         <div class="voiceWrapper">
           <div class="voicesContainer hide"></div>
           <div class="select">Select Voice</div>
-          <span class=" speak material-symbols-outlined">
+          <span class=" speak material-symbols-outlined" role="button" aria-disabled="false" tabindex="-1">
             volume_up
           </span>
-          <span class=" mute material-symbols-outlined">
+          <span class=" mute material-symbols-outlined" role="button" aria-disabled="true" tabindex="-1">
             volume_off
           </span>
           <span class=" clear material-symbols-outlined">
@@ -50,8 +50,8 @@
           <div class="interim">
           </div>
           <div class="btnWrapper">
-            <div class="start">START</div>
-            <div class="stop">STOP</div>
+            <div class="start" role="button" aria-disabled="false">START</div>
+            <div class="stop" role="button" aria-disabled="true">STOP</div>
           </div>
         </div>
       </section>
