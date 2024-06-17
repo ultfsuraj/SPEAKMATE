@@ -119,8 +119,6 @@ recognition.onend = () => {
         answer.value += BUFFER.text + ". "
     }
     setTimeout(() => interimTxt.textContent = "", 500)
-    startBtn.ariaDisabled = false;
-    stopBtn.ariaDisabled = true;
     if (index > -1) {
         recognition.stop();
         if (answer.value.length > 0) {
