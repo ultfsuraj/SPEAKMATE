@@ -145,11 +145,14 @@ startBtn.addEventListener('click', () => {
 stopBtn.addEventListener('click', () => {
     speakBtn.ariaDisabled = false
     cancelBtn.ariaDisabled = true
+    startBtn.ariaDisabled = false
+    stopBtn.ariaDisabled = true
     speak = true;
     answer.value = ''
     BUFFER.text = stopText
     window.speechSynthesis.cancel()
     recognition.stop();
+
 });
 
 cancelBtn.addEventListener('click', () => {
