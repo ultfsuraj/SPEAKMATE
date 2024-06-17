@@ -24,7 +24,7 @@ if (!SpeechRecognition) {
     alert('Your browser does not support the Web Speech API');
 }
 const recognition = new SpeechRecognition();
-recognition.continuous = true;
+recognition.continuous = false;
 recognition.interimResults = true;
 recognition.lang = 'en-US';
 const startBtn = document.querySelector('.start')
