@@ -18,16 +18,17 @@
     const aspect = 0.6
     const calculateVW = ()=>{
       let currAspect = window.innerWidth / window.innerHeight;
+      let newVW = 100;
       if(currAspect > aspect){
-        let newVW = 100*(aspect/currAspect)
-        console.log(currAspect, newVW, window.innerWidth, window.innerHeight)
-        document.documentElement.style.setProperty('--customVW', `${newVW}vw`);
+        newVW = 100*(aspect/currAspect);
       }
+      document.documentElement.style.setProperty('--customVW', `${newVW}vw`);
     }
     
     calculateVW()
-    window.addEventListener('resize',()=>calculateVW())
-    window.addEventListener('orientationchange',()=>calculateVW())
+    window.addEventListener('resize',()=>{
+      calculateVW()
+    })
   
   </script>
 
