@@ -43,6 +43,11 @@ body{
     pointer-events: none;
 }
 
+.material-symbols-outlined{
+    overflow: hidden;
+}
+
+
 .appWrapper {
     height: 100vh;
     width: calc(100*var(--customVW)/100);
@@ -126,8 +131,9 @@ body{
     color: white;
     cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .howWrapper {
@@ -450,11 +456,11 @@ ul.custom-bullets {
   }
 
   #install{
-    position: fixed;
     font-size: var(--xlarge);
-    right: calc(5*var(--customVW)/100);
+    padding: 0;
     color: #7ED957;
-    
+    position: absolute;
+    right: 3vw;
   }
 
   @media (display-mode: standalone){
