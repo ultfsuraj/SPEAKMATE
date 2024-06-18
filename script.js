@@ -230,7 +230,8 @@ const sendMessage = async (prompt) => {
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
-        interimTxt.innerHTML = "<p style='color:red;'> Invalid Credentials </p>"
+        startBtn.click()
+        interimTxt.innerHTML = "<span style='color:red;'> Invalid Credentials </span>"
         setTimeout(() => interimTxt.innerHTML = '', 3000)
     }
 
