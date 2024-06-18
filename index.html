@@ -9,13 +9,14 @@
 
   <link rel="manifest" href="app.webmanifest" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="apple-touch-icon" href="icons/icon1.png"/>
-  <link rel="apple-touch-icon" href="icons/icocM.png"/>
+  <link rel="apple-touch-icon" href="icons/icon1.png" />
+  <link rel="apple-touch-icon" href="icons/icocM.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -24,21 +25,28 @@
   </style>
 
   <script type="text/javascript">
+    let bipEvent = null
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault()
+      bipEvent = event
+    })
+
+
     const aspect = 0.6
-    const calculateVW = ()=>{
+    const calculateVW = () => {
       let currAspect = window.innerWidth / window.innerHeight;
       let newVW = 100;
-      if(currAspect > aspect){
-        newVW = 100*(aspect/currAspect);
+      if (currAspect > aspect) {
+        newVW = 100 * (aspect / currAspect);
       }
       document.documentElement.style.setProperty('--customVW', `${newVW}vw`);
     }
-    
+
     calculateVW()
-    window.addEventListener('resize',()=>{
+    window.addEventListener('resize', () => {
       calculateVW()
     })
-  
+
   </script>
 
 </head>
@@ -48,6 +56,9 @@
   <div class="appWrapper figtree-appWrapper">
     <div class="header">
       SPEAKMATE
+      <span class="material-symbols-outlined" id="install">
+        download
+        </span>
     </div>
     <div class="middle">
       <!-- home -->
@@ -95,21 +106,20 @@
             <label>
               Pitch :
               <input type="range" name="pitch" min="0.2" max="2" value="1" step="0.1" id="pitch"
-               onchange="changePitch()" />
+                onchange="changePitch()" />
             </label>
           </div>
           <div>
             <label>
               Speed :
               <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate"
-              onchange="changeRate()"  />
+                onchange="changeRate()" />
             </label>
           </div>
           <div>
             <label>
               Model :
-              <input type="text" placeholder=" Enter Model Name ..." id="modelname" 
-              onchange="changeModelName()" />
+              <input type="text" placeholder=" Enter Model Name ..." id="modelname" onchange="changeModelName()" />
             </label>
           </div>
         </div>
@@ -119,22 +129,19 @@
 
           <label>
             Account ID :
-            <input type="text" placeholder=" Enter Account ID " id="accountid" 
-            onchange="changeAccountID()"/>
+            <input type="text" placeholder=" Enter Account ID " id="accountid" onchange="changeAccountID()" />
           </label>
 
 
           <label>
             Model URL :
-            <input type="text" placeholder=" Enter Model URL" id="workerurl" 
-            onchange="changeWorkerURL()"/>
+            <input type="text" placeholder=" Enter Model URL" id="workerurl" onchange="changeWorkerURL()" />
           </label>
 
 
           <label>
             Access KEY :
-            <input type="text" placeholder=" Enter Access KEY" id="token" 
-            onchange="changeToken()"/>
+            <input type="text" placeholder=" Enter Access KEY" id="token" onchange="changeToken()" />
           </label>
 
         </div>

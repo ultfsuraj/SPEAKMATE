@@ -124,8 +124,10 @@ body{
     font-weight: 700;
     letter-spacing: calc(1*var(--customVW)/100);
     color: white;
-    text-align: center;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .howWrapper {
@@ -447,3 +449,16 @@ ul.custom-bullets {
     padding: calc(2*var(--customVW)/100);
   }
 
+  #install{
+    position: fixed;
+    font-size: var(--xlarge);
+    right: calc(5*var(--customVW)/100);
+    color: #7ED957;
+    
+  }
+
+  @media (display-mode: standalone){
+    #install {
+        display: none;
+    }
+}

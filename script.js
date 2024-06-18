@@ -104,7 +104,10 @@ recognition.onresult = (event) => {
 };
 
 recognition.onerror = (event) => {
-    console.log('Speech recognition error. ', event.error);
+    stopBtn.click()
+    interimTxt.innerHTML = "<span style='color:red'>Need Internet Connection</span> "
+    setTimeout(()=>interimTxt.innerHTML='', 3000)
+
 };
 
 recognition.onend = () => {
@@ -226,7 +229,8 @@ const sendMessage = async (prompt) => {
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
-        console.error('Error:', error)
+        interimTxt.innerHTML = "<p style='color:red;'> Invalid Credentials </p>"
+        setTimeout(()=>interimTxt.innerHTML='', 3000)
     }
 
 }
@@ -289,3 +293,12 @@ function changeWorkerURL(){
 function changeToken(){
     token = tokenTxt.value
 }
+
+document.querySelector('#install').addEventListener('click', (event) => {
+    if (bipEvent) {
+        bipEvent.prompt()
+    } else {
+        interimTxt.innerHTML = "<p style='color:red;'>To install the app look for 'Add to Homescreen' or 'Install' option in your browser's menu</p>"
+        setTimeout(()=>interimTxt.innerHTML='', 3000)
+    }
+})
