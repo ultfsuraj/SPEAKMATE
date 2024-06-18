@@ -10,17 +10,17 @@
 
 ::-webkit-scrollbar {
     width: calc(1.5*var(--customVW)/100);
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@
 }
 
 
-body{
+body {
     display: flex;
     justify-content: center;
     background-color: #001111;
@@ -43,7 +43,7 @@ body{
     pointer-events: none;
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
     overflow: hidden;
 }
 
@@ -107,6 +107,7 @@ body{
     padding-top: calc(4*var(--customVW)/100);
     justify-content: space-evenly;
 }
+
 #helpSection {
     opacity: 0.97;
     z-index: -1;
@@ -246,7 +247,7 @@ body{
     cursor: pointer;
 }
 
-.voicesContainer{
+.voicesContainer {
     position: absolute;
     left: 0;
     top: 102%;
@@ -256,21 +257,25 @@ body{
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
-.voice{
+
+.voice {
     border-bottom: 1px solid gray;
     background-color: rgb(255, 255, 247);
     font-size: var(--small);
     font-weight: 500;
     padding: calc(2*var(--customVW)/100) calc(1*var(--customVW)/100);
 }
-.voiceActive{
+
+.voiceActive {
     background-color: rgb(238, 249, 251);
 }
-.hide{
+
+.hide {
     display: none;
 }
 
 .speak {}
+
 .mute {
     color: rgb(138, 0, 0);
 }
@@ -405,65 +410,78 @@ body{
     display: inline;
 }
 
-.demolink{
+.demolink {
     letter-spacing: 1px;
     font-weight: 500;
     color: #F0FFE0;
 }
-.steps h3{
+
+.steps h3 {
     padding-bottom: calc(2.2*var(--customVW)/100);
 }
 
- li{
+li {
     font-size: var(--small);
     font-weight: 500;
     padding: 0vw calc(2*var(--customVW)/100) calc(1*var(--customVW)/100) calc(3*var(--customVW)/100);
     line-height: 1.7em;
     letter-spacing: 1px;
     display: block;
-} 
+}
 
 ul.custom-bullets {
-    list-style: none; /* Remove default bullets */
-    padding-left: calc(2*var(--customVW)/100); /* Adjust padding to make space for custom bullets */
-  }
+    list-style: none;
+    /* Remove default bullets */
+    padding-left: calc(2*var(--customVW)/100);
+    /* Adjust padding to make space for custom bullets */
+}
 
-  ul.custom-bullets li {
-    position: relative; /* Positioning context for the ::before pseudo-element */
-    padding-left: calc(5*var(--customVW)/100); /* Space for the custom bullet */
+ul.custom-bullets li {
+    position: relative;
+    /* Positioning context for the ::before pseudo-element */
+    padding-left: calc(5*var(--customVW)/100);
+    /* Space for the custom bullet */
 
-  }
+}
 
-  ul.custom-bullets li::before {
-    content: ''; /* No text content, just a bullet */
-    position: absolute; /* Position it relative to the list item */
-    left: 0; /* Align to the left of the list item */
-    top: 0.5em; /* Adjust vertically as needed */
-    width: calc(2*var(--customVW)/100); /* Custom bullet width */
-    height: calc(2*var(--customVW)/100); /* Custom bullet height */
-    background-color: white; /* Bullet color */
-    border-radius: 50%; /* Make it a circle */
-  }
+ul.custom-bullets li::before {
+    content: '';
+    /* No text content, just a bullet */
+    position: absolute;
+    /* Position it relative to the list item */
+    left: 0;
+    /* Align to the left of the list item */
+    top: 0.5em;
+    /* Adjust vertically as needed */
+    width: calc(2*var(--customVW)/100);
+    /* Custom bullet width */
+    height: calc(2*var(--customVW)/100);
+    /* Custom bullet height */
+    background-color: white;
+    /* Bullet color */
+    border-radius: 50%;
+    /* Make it a circle */
+}
 
-  .reason{
+.reason {
     color: #F0FFE0;
-  }
+}
 
-  .safety{
+.safety {
     color: #D40000;
     background-color: white;
     padding: calc(2*var(--customVW)/100);
-  }
+}
 
-  #install{
+#install {
     font-size: var(--xlarge);
     padding: 0;
     color: #7ED957;
     position: absolute;
     right: calc(var(--large));
-  }
+}
 
-  @media (display-mode: standalone){
+@media (display-mode: standalone) {
     #install {
         display: none;
     }

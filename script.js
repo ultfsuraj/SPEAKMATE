@@ -53,7 +53,7 @@ const BUFFER = {
     text: ''
 }
 const voicesContext = {
-    active: 0 ,
+    active: 0,
     prevEle: {},
 }
 
@@ -72,16 +72,16 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
     }
     utterThis.onend = () => {
         BUFFER.text = ''
-        if(!speak){
+        if (!speak) {
             answer.value = ""
-        }else{
+        } else {
             speakBtn.ariaDisabled = false
         }
         if (!waitMsg.includes(text) && !speak) {
             recognition.start()
         }
         cancelBtn.ariaDisabled = true
-        
+
     }
 
     window.speechSynthesis?.speak(utterThis);
@@ -106,7 +106,7 @@ recognition.onresult = (event) => {
 recognition.onerror = (event) => {
     stopBtn.click()
     interimTxt.innerHTML = "<span style='color:red'>Need Internet Connection</span> "
-    setTimeout(()=>interimTxt.innerHTML='', 3000)
+    setTimeout(() => interimTxt.innerHTML = '', 3000)
 
 };
 
@@ -167,16 +167,16 @@ cancelBtn.addEventListener('click', () => {
 
 speechSynthesis.onvoiceschanged = () => {
     voices = window.speechSynthesis.getVoices();
-    voices.forEach((voice,index)=>{
+    voices.forEach((voice, index) => {
         let div = document.createElement('div')
         div.classList.add('voice')
-        if(index == voiceIndex){
+        if (index == voiceIndex) {
             div.classList.add('voiceActive')
-            voicesContext.prevEle = div 
+            voicesContext.prevEle = div
         }
-        div.setAttribute('data-key',index)
-        div.setAttribute('role',"option")
-        div.innerText = voice.name 
+        div.setAttribute('data-key', index)
+        div.setAttribute('role', "option")
+        div.innerText = voice.name
         voicesContainer.appendChild(div)
     })
 }
@@ -231,67 +231,67 @@ const sendMessage = async (prompt) => {
 
     } catch (error) {
         interimTxt.innerHTML = "<p style='color:red;'> Invalid Credentials </p>"
-        setTimeout(()=>interimTxt.innerHTML='', 3000)
+        setTimeout(() => interimTxt.innerHTML = '', 3000)
     }
 
 }
 
 
-function closeHelp(close){
-    if(close){
+function closeHelp(close) {
+    if (close) {
         helpSec.style.zIndex = -1;
-    }else{
+    } else {
         helpSec.style.zIndex = 3;
     }
 }
-function closeHowTo(close){
-    if(close){
+function closeHowTo(close) {
+    if (close) {
         howToSec.style.zIndex = -1;
-    }else{
+    } else {
         howToSec.style.zIndex = 3;
     }
 }
-function closeConfig(close){
-    if(close){
+function closeConfig(close) {
+    if (close) {
         configSec.style.zIndex = -1;
-    }else{
+    } else {
         configSec.style.zIndex = 3;
     }
 }
 
-chooseVoice.addEventListener('click',()=>{
+chooseVoice.addEventListener('click', () => {
     voicesContainer.classList.toggle('hide')
 })
 
-voicesContainer.addEventListener('click',(e)=>{
+voicesContainer.addEventListener('click', (e) => {
     voicesContext.prevEle.classList.remove('voiceActive')
     e.target.classList.add('voiceActive')
     voicesContext.prevEle = e.target
     voiceIndex = e.target.getAttribute('data-key')
-    setTimeout(()=>voicesContainer.classList.toggle('hide'), 300)
+    setTimeout(() => voicesContainer.classList.toggle('hide'), 300)
 })
 
-function changePitch(){
+function changePitch() {
     pitch = pitchTxt.value
 }
 
-function changeRate(){
+function changeRate() {
     rate = rateTxt.value
 }
 
-function changeModelName(){
+function changeModelName() {
     modelName = modelnameTxt.value
 }
 
-function changeAccountID(){
+function changeAccountID() {
     accountID = accountidTxt.value
 }
 
-function changeWorkerURL(){
-    workerURL = workerurlTxt.value 
+function changeWorkerURL() {
+    workerURL = workerurlTxt.value
 }
 
-function changeToken(){
+function changeToken() {
     token = tokenTxt.value
 }
 
@@ -300,6 +300,6 @@ document.querySelector('#install').addEventListener('click', (event) => {
         bipEvent.prompt()
     } else {
         interimTxt.innerHTML = "<p style='color:red;'>To install the app look for 'Add to Homescreen' or 'Install' option in your browser's menu</p>"
-        setTimeout(()=>interimTxt.innerHTML='', 3000)
+        setTimeout(() => interimTxt.innerHTML = '', 3000)
     }
 })

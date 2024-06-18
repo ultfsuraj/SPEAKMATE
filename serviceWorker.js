@@ -10,13 +10,13 @@ const assets = [
     'https://fonts.gstatic.com/s/materialsymbolsoutlined/v192/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOejbdhzrA.woff2'
 ]
 
-self.addEventListener('install', (event)=>{
+self.addEventListener('install', (event) => {
     // browser kills within 40s, so wait until large assets
     event.waitUntil(
-        caches.open('assets').then((cache)=>{
-            try{
+        caches.open('assets').then((cache) => {
+            try {
                 cache.addAll(assets)
-            }catch(e){
+            } catch (e) {
                 console.log('error in caching asset')
             }
         })
@@ -25,10 +25,10 @@ self.addEventListener('install', (event)=>{
 
 
 // old assets are fetched, and also a network call is made to update the cache for next requests
-self.addEventListener('fetch', event=>{
+self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then( response => {
+            .then(response => {
                 const fetchPromise = fetch(event.request).then(
                     networkResponse => {
                         caches.open('assets').then(cache => {

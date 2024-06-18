@@ -6,7 +6,7 @@
     "theme_color": "#001111",
     "scope": "./",
     "display": "standalone",
-    "icons":[
+    "icons": [
         {
             "src": "icon1.webp",
             "sizes": "512x512",
