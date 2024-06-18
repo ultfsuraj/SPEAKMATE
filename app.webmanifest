@@ -1,0 +1,28 @@
+{
+    "name": "SPEAKMATE, conversation partner",
+    "short_name": "SPEAKMATE",
+    "start_url": "./?launcher=homescreen",
+    "orientation": "portrait",
+    "theme_color": "#001111",
+    "scope": "./",
+    "display": "standalone",
+    "icons":[
+        {
+            "src": "icon1.webp",
+            "sizes": "512x512",
+            "type": "image/webp"
+        },
+        {
+            "src": "iconM.webp",
+            "sizes": "1024x1024",
+            "type": "image/webp"
+        },
+        {
+            "src": "iconM.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "maskable"
+        }
+    ],
+    "description": "Practice speaking and learning"
+}

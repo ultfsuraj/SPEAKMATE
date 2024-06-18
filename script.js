@@ -268,30 +268,24 @@ voicesContainer.addEventListener('click',(e)=>{
 
 function changePitch(){
     pitch = pitchTxt.value
-    console.log(pitch)
 }
 
 function changeRate(){
     rate = rateTxt.value
-    console.log(rate)
 }
 
 function changeModelName(){
     modelName = modelnameTxt.value
-    console.log(modelName)
 }
 
 function changeAccountID(){
     accountID = accountidTxt.value
-    console.log(accountID)
 }
 
 function changeWorkerURL(){
     workerURL = workerurlTxt.value 
-    console.log(workerURL)
 }
 
 function changeToken(){
     token = tokenTxt.value
-    console.log(token)
 }
