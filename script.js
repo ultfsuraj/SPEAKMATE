@@ -175,6 +175,7 @@ speechSynthesis.onvoiceschanged = () => {
             voicesContext.prevEle = div 
         }
         div.setAttribute('data-key',index)
+        div.setAttribute('role',"option")
         div.innerText = voice.name 
         voicesContainer.appendChild(div)
     })
@@ -267,7 +268,7 @@ voicesContainer.addEventListener('click',(e)=>{
     e.target.classList.add('voiceActive')
     voicesContext.prevEle = e.target
     voiceIndex = e.target.getAttribute('data-key')
-    setTimeout(()=>chooseVoice.click(), 300)
+    setTimeout(()=>voicesContainer.classList.toggle('hide'), 300)
 })
 
 function changePitch(){

@@ -55,32 +55,36 @@
 
   <div class="appWrapper figtree-appWrapper">
     <div class="header">
-      <span>SPEAKMATE</span>
-      <span class="material-symbols-outlined" id="install">
+      <span role="heading" tabindex="0">SPEAKMATE</span>
+      <span class="material-symbols-outlined" id="install" role="button" tabindex="0" aria-label="install app">
         download
       </span>
     </div>
     <div class="middle">
       <!-- home -->
-      <section id="homeSection">
+      <section id="homeSection" aria-label="home section">
         <div class="howWrapper">
-          <div class="howTxt" onclick="closeHowTo(false)">How to Use</div>
-          <div class="howTxt" onclick="closeConfig(false)">Configure AI</div>
+          <div class="howTxt" onclick="closeHowTo(false)" role="button" tabindex="0" aria-label="How to Use">How to Use
+          </div>
+          <div class="howTxt" onclick="closeConfig(false)" role="button" tabindex="0" aria-label="Configure AI">
+            Configure AI</div>
         </div>
         <div class="tvWrapper">
-          <textarea class="ans"></textarea>
-          <img class="botImg" src="chatbot.webp">
+          <textarea class="ans" tabindex="0" aria-label="chat area"></textarea>
+          <img class="botImg" src="chatbot.webp" alt="chatbot image">
         </div>
         <div class="voiceWrapper">
           <div class="voicesContainer hide"></div>
-          <div class="select">Select Voice</div>
-          <span class=" speak material-symbols-outlined" role="button" aria-disabled="false" tabindex="-1">
+          <div class="select" role="listbox" tabindex="0" aria-label="select voice">Select Voice</div>
+          <span class=" speak material-symbols-outlined" role="button" aria-disabled="false" tabindex="0"
+            aria-label="speak">
             volume_up
           </span>
-          <span class=" mute material-symbols-outlined" role="button" aria-disabled="true" tabindex="-1">
+          <span class=" mute material-symbols-outlined" role="button" aria-disabled="true" tabindex="0"
+            aria-label="mute">
             volume_off
           </span>
-          <span class=" clear material-symbols-outlined">
+          <span class=" clear material-symbols-outlined" role="button" tabindex="0" aria-label="clear">
             delete
           </span>
         </div>
@@ -88,15 +92,15 @@
           <div class="interim">
           </div>
           <div class="btnWrapper">
-            <div class="start" role="button" aria-disabled="false">START</div>
-            <div class="stop" role="button" aria-disabled="true">STOP</div>
+            <div class="start" role="button" aria-disabled="false" tabindex="0" aria-label="start">START</div>
+            <div class="stop" role="button" aria-disabled="true" tabindex="0" aria-label="stop">STOP</div>
           </div>
         </div>
       </section>
 
       <!-- config ai -->
-      <section id="configSection">
-        <div class="cross" onclick="closeConfig(true)">
+      <section id="configSection" aria-label="config AI section">
+        <div class="cross" onclick="closeConfig(true)" role="button" tabindex="0" aria-label="close config section">
           <span class="material-symbols-outlined">
             close
           </span>
@@ -106,20 +110,21 @@
             <label>
               Pitch :
               <input type="range" name="pitch" min="0.2" max="2" value="1" step="0.1" id="pitch"
-                onchange="changePitch()" />
+                onchange="changePitch()" tabindex="0" aria-label="pitch selector" />
             </label>
           </div>
           <div>
             <label>
               Speed :
-              <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate"
-                onchange="changeRate()" />
+              <input type="range" name="rate" min="0.5" max="2" value="1" step="0.1" id="rate" onchange="changeRate()"
+                tabindex="0" aria-label="speed slider" />
             </label>
           </div>
           <div>
             <label>
               Model :
-              <input type="text" placeholder=" Enter Model Name ..." id="modelname" onchange="changeModelName()" />
+              <input type="text" placeholder=" Enter Model Name ..." id="modelname" onchange="changeModelName()"
+                tabindex="0" aria-label="model name" />
             </label>
           </div>
         </div>
@@ -129,33 +134,36 @@
 
           <label>
             Account ID :
-            <input type="text" placeholder=" Enter Account ID " id="accountid" onchange="changeAccountID()" />
+            <input type="text" placeholder=" Enter Account ID " id="accountid" onchange="changeAccountID()" tabindex="0"
+              aria-label="account id" />
           </label>
 
 
           <label>
             Model URL :
-            <input type="text" placeholder=" Enter Model URL" id="workerurl" onchange="changeWorkerURL()" />
+            <input type="text" placeholder=" Enter Model URL" id="workerurl" onchange="changeWorkerURL()" tabindex="0"
+              aria-label="model url" />
           </label>
 
 
           <label>
             Access KEY :
-            <input type="text" placeholder=" Enter Access KEY" id="token" onchange="changeToken()" />
+            <input type="text" placeholder=" Enter Access KEY" id="token" onchange="changeToken()" tabindex="0"
+              aria-label="access key" />
           </label>
 
         </div>
       </section>
 
       <!-- how to use  -->
-      <section id="howToSection">
-        <div class="cross" onclick="closeHowTo(true)">
+      <section id="howToSection" aria-label="how to use section">
+        <div class="cross" onclick="closeHowTo(true)" role="button" tabindex="0" aria-label="close how to section">
           <span class="material-symbols-outlined">
             close
           </span>
         </div>
-        <p class="demolink">Watch this DEMO to learn how </br> to use this WebApp. <strong
-            style="color: #23DEFF; text-decoration: underline;">Video Link</strong></p>
+        <p class="demolink">Watch this DEMO to learn how </br> to use this WebApp. 
+          <a tyle="color: #23DEFF; text-decoration: underline;">Video Link</a></p>
         <div class="steps">
           <h3 class="demolink">Steps in Brief : </h3>
           <ul class="custom-bullets">
@@ -179,8 +187,8 @@
       </section>
 
       <!-- help ?  -->
-      <section id="helpSection">
-        <div class="cross" onclick="closeHelp(true)">
+      <section id="helpSection" aria-label="help section">
+        <div class="cross" onclick="closeHelp(true)" role="button" tabindex="0" aria-label="close help section">
           <span class="material-symbols-outlined">
             close
           </span>
@@ -202,7 +210,7 @@
       </section>
 
     </div>
-    <div class="header" onclick="closeHelp(false)">
+    <div class="header" onclick="closeHelp(false)" role="button" tabindex="0" aria-label="Help">
       HELP ?
     </div>
   </div>
