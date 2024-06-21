@@ -26,6 +26,12 @@ self.addEventListener('install', (event) => {
 
 // old assets are fetched, and also a network call is made to update the cache for next requests
 self.addEventListener('fetch', event => {
+    const url = new URL(event.request.url);
+    if (url.href == 'https://withered-frog-d5b7.purkufirte.workers.dev/') {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request)
             .then(response => {

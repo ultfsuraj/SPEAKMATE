@@ -153,6 +153,8 @@ stopBtn.addEventListener('click', () => {
     speak = true;
     answer.value = ''
     BUFFER.text = stopText
+    botImg.style.animation = "none"
+    tvWrapper.style.animation = "none"
     window.speechSynthesis.cancel()
     recognition.stop();
 
@@ -230,13 +232,13 @@ const sendMessage = async (prompt) => {
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
-        startBtn.click()
+        answer.value = error
+        stopBtn.click()
         interimTxt.innerHTML = "<span style='color:red;'> Invalid Credentials </span>"
         setTimeout(() => interimTxt.innerHTML = '', 3000)
     }
 
 }
-
 
 function closeHelp(close) {
     if (close) {
