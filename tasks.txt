@@ -18,7 +18,7 @@ DONE
 13. Animation performance improvement, memory leaks etc
 14. PWA ... after service worker is added, no response is coming from AI
 10. what to do when there's a long delay in network. 
-9. remember conversation : can store in local storate. and send all of the conversations at once. char limit for a query
+9. remember conversation : can store in local storate. and send all of the conversations at once. 
 
 
 
@@ -29,6 +29,7 @@ PENDING
 15. not completely accessible , seo 
 16. compressed, build
 
+18. char limit for a query. how to compress the conversation as the user continues to speak 
 
 
 

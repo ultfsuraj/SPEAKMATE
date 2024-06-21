@@ -21,6 +21,7 @@ const stopText = "stop recognition"
 const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let QA = ""
+let answered = false
 
 
 if (!SpeechRecognition) {
@@ -81,9 +82,9 @@ const tellMe = (text, voiceIndex, pitch, rate, wait = false) => {
             speakBtn.ariaDisabled = false
         }
         if (!wait && !speak) {
-            try{
+            try {
                 recognition.start()
-            }catch(e){}
+            } catch (e) { }
         }
         cancelBtn.ariaDisabled = true
 
@@ -109,7 +110,9 @@ recognition.onresult = (event) => {
 };
 
 recognition.onerror = (event) => {
+    let text = answer.value
     stopBtn.click()
+    answer.value = text
     interimTxt.innerHTML = "<span style='color:red'>Need Internet Connection</span> "
     setTimeout(() => interimTxt.innerHTML = '', 3000)
 
@@ -118,9 +121,9 @@ recognition.onerror = (event) => {
 recognition.onend = () => {
     let index = BUFFER.text.toLocaleLowerCase().indexOf(stopText)
     if (index < 0) {
-        try{
+        try {
             recognition.start()
-        }catch(e){}
+        } catch (e) { }
     }
     BUFFER.text.trim()
     if (index >= 0) {
@@ -136,33 +139,32 @@ recognition.onend = () => {
             sendMessage(answer.value)
             answer.value = ''
             BUFFER.text = ''
-            
-        botImg.style.animation = "botblink 1.5s 3s ease-in-out infinite"
-        tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
 
-        setTimeout(() => {
-            if (!window.speechSynthesis.speaking) {
-                tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
-            }
-        }, 3000)
+            botImg.style.animation = "botblink 1.5s 3s ease-in-out infinite"
+            tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
 
-        setTimeout(() => {
-            if (!window.speechSynthesis.speaking) {
-                tellMe(thankmsg, voiceIndex, pitch, rate, true)
-            }
-        }, 8000)
+            setTimeout(() => {
+                if (!window.speechSynthesis.speaking && !answered) {
+                    tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
+                }
+            }, 3000)
 
-            
-        }else{
+            setTimeout(() => {
+                if (!window.speechSynthesis.speaking && !answered) {
+                    tellMe(thankmsg, voiceIndex, pitch, rate, true)
+                }
+            }, 8000)
+
+        } else {
             stopBtn.click()
         }
         return
     }
 
     BUFFER.text = ''
-    try{
+    try {
         recognition.start()
-    }catch(e){}
+    } catch (e) { }
 };
 
 startBtn.addEventListener('click', () => {
@@ -171,9 +173,9 @@ startBtn.addEventListener('click', () => {
     answer.value = ''
     BUFFER.text = ''
     window.speechSynthesis.cancel()
-    try{
+    try {
         recognition.start()
-    }catch(e){}
+    } catch (e) { }
 });
 
 stopBtn.addEventListener('click', () => {
@@ -195,9 +197,9 @@ cancelBtn.addEventListener('click', () => {
     window.speechSynthesis.cancel()
     answer.value = ''
     BUFFER.text = ''
-    try{
+    try {
         recognition.start()
-    }catch(e){}
+    } catch (e) { }
 })
 
 speechSynthesis.onvoiceschanged = () => {
@@ -231,14 +233,41 @@ clearBtn.addEventListener("click", () => {
 })
 
 
+const compressMsg = async (newQuestion) => {
+    let payload = {
+        prompt: `${QA}. compress our above conversation without loosing context and send me in dialog format. use 'Me' for questions i asked to you, and 'YOU' for answers you've given.`
+    }
+    try {
+        const response = await fetch(workerURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+
+        const data = await response.json()
+        QA += `${data?.result?.response}\n Me: ${newQuestion}\n`
+
+    } catch (e) {
+        console.log('compressMsg', e)
+    }
+}
+
 
 const sendMessage = async (prompt) => {
 
     QA += `Me: ${prompt} \n`
     console.log(QA.length)
     let payload = {
-        prompt: `${QA} answer briefly`
+        prompt: `${QA} answer as short as possible, to the point.`
     }
+
+    answered = false
 
     try {
         const response = await fetch(workerURL, {
@@ -256,8 +285,9 @@ const sendMessage = async (prompt) => {
         const data = await response.json()
         answer.value = ""
         botImg.style.animation = "none"
-        tvWrapper.style.animation = "none"  
+        tvWrapper.style.animation = "none"
         QA += `You: ${data?.result?.response}\n`
+        answered = true
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
@@ -268,6 +298,9 @@ const sendMessage = async (prompt) => {
     }
 
 }
+
+
+
 
 function closeHelp(close) {
     if (close) {
