@@ -233,9 +233,9 @@ clearBtn.addEventListener("click", () => {
 })
 
 
-const compressMsg = async (newQuestion) => {
+const compressMsg = async () => {
     let payload = {
-        prompt: `${QA}. compress our above conversation without loosing context and send me in dialog format. use 'Me' for questions i asked to you, and 'YOU' for answers you've given.`
+        prompt: `${QA}. compress our above conversation without loosing context & only send the dialogs. use 'Me' for questions i asked to you, and 'YOU' for answers you've given.`
     }
     try {
         const response = await fetch(workerURL, {
@@ -251,7 +251,9 @@ const compressMsg = async (newQuestion) => {
         }
 
         const data = await response.json()
-        QA += `${data?.result?.response}\n Me: ${newQuestion}\n`
+        QA = `${data?.result?.response}\n `
+
+        console.log(QA)
 
     } catch (e) {
         console.log('compressMsg', e)
@@ -289,6 +291,10 @@ const sendMessage = async (prompt) => {
         QA += `You: ${data?.result?.response}\n`
         answered = true
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
+
+        if(QA.length > 4500){
+            compressMsg()
+        }
 
     } catch (error) {
         answer.value = error
@@ -364,7 +370,7 @@ document.querySelector('#install').addEventListener('click', (event) => {
     if (bipEvent) {
         bipEvent.prompt()
     } else {
-        interimTxt.innerHTML = "<p style='color:red;'>To install the app look for 'Add to Homescreen' or 'Install' option in your browser's menu</p>"
+        interimTxt.innerHTML = "<span style='color:red;'>To install the app look for 'Add to Homescreen' or 'Install' option in your browser's menu</span>"
         setTimeout(() => interimTxt.innerHTML = '', 3000)
     }
 })
