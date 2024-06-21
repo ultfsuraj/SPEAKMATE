@@ -16,6 +16,7 @@ let workerURL = 'https://withered-frog-d5b7.purkufirte.workers.dev/'
 let speak = true;
 let voiceIndex = 0;
 let voices = window.speechSynthesis.getVoices() || []
+let thankmsg = "Thank you for your patience"
 const stopText = "stop recognition"
 const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -57,7 +58,7 @@ const voicesContext = {
     prevEle: {},
 }
 
-const tellMe = (text, voiceIndex, pitch, rate) => {
+const tellMe = (text, voiceIndex, pitch, rate, wait= false) => {
     let utterThis = new SpeechSynthesisUtterance(text);
     utterThis.voice = voices[voiceIndex];
     utterThis.pitch = pitch;
@@ -77,7 +78,7 @@ const tellMe = (text, voiceIndex, pitch, rate) => {
         } else {
             speakBtn.ariaDisabled = false
         }
-        if (!waitMsg.includes(text) && !speak) {
+        if (!wait && !speak) {
             recognition.start()
         }
         cancelBtn.ariaDisabled = true
@@ -208,8 +209,11 @@ const sendMessage = async (prompt) => {
     tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
 
     setTimeout(() => {
-        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate)
-    }, 2500)
+        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
+        setTimeout(() => {
+            tellMe(thankmsg, voiceIndex, pitch, rate, true)
+        }, 5000)
+    }, 3000)
 
     try {
         const response = await fetch(workerURL, {
