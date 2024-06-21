@@ -209,7 +209,7 @@ const sendMessage = async (prompt) => {
 
     setTimeout(() => {
         tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate)
-    }, 2500)
+    }, 3000)
 
     try {
         const response = await fetch(workerURL, {
