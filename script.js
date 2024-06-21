@@ -58,7 +58,7 @@ const voicesContext = {
     prevEle: {},
 }
 
-const tellMe = (text, voiceIndex, pitch, rate, wait= false) => {
+const tellMe = (text, voiceIndex, pitch, rate, wait = false) => {
     let utterThis = new SpeechSynthesisUtterance(text);
     utterThis.voice = voices[voiceIndex];
     utterThis.pitch = pitch;
@@ -129,6 +129,8 @@ recognition.onend = () => {
             sendMessage(answer.value)
             answer.value = ''
             BUFFER.text = ''
+        }else{
+            stopBtn.click()
         }
         return
     }
@@ -210,10 +212,13 @@ const sendMessage = async (prompt) => {
 
     setTimeout(() => {
         tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
-        setTimeout(() => {
-            tellMe(thankmsg, voiceIndex, pitch, rate, true)
-        }, 5000)
     }, 3000)
+
+    setTimeout(() => {
+        if (!window.speechSynthesis.speaking) {
+            tellMe(thankmsg, voiceIndex, pitch, rate, true)
+        }
+    }, 8000)
 
     try {
         const response = await fetch(workerURL, {
