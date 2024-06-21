@@ -20,6 +20,8 @@ let thankmsg = "Thank you for your patience"
 const stopText = "stop recognition"
 const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let QA = ""
+
 
 if (!SpeechRecognition) {
     alert('Your browser does not support the Web Speech API');
@@ -79,7 +81,9 @@ const tellMe = (text, voiceIndex, pitch, rate, wait = false) => {
             speakBtn.ariaDisabled = false
         }
         if (!wait && !speak) {
-            recognition.start()
+            try{
+                recognition.start()
+            }catch(e){}
         }
         cancelBtn.ariaDisabled = true
 
@@ -114,7 +118,9 @@ recognition.onerror = (event) => {
 recognition.onend = () => {
     let index = BUFFER.text.toLocaleLowerCase().indexOf(stopText)
     if (index < 0) {
-        recognition.start()
+        try{
+            recognition.start()
+        }catch(e){}
     }
     BUFFER.text.trim()
     if (index >= 0) {
@@ -126,9 +132,27 @@ recognition.onend = () => {
     if (index > -1) {
         recognition.stop();
         if (answer.value.length > 0) {
+
             sendMessage(answer.value)
             answer.value = ''
             BUFFER.text = ''
+            
+        botImg.style.animation = "botblink 1.5s 3s ease-in-out infinite"
+        tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
+
+        setTimeout(() => {
+            if (!window.speechSynthesis.speaking) {
+                tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
+            }
+        }, 3000)
+
+        setTimeout(() => {
+            if (!window.speechSynthesis.speaking) {
+                tellMe(thankmsg, voiceIndex, pitch, rate, true)
+            }
+        }, 8000)
+
+            
         }else{
             stopBtn.click()
         }
@@ -136,7 +160,9 @@ recognition.onend = () => {
     }
 
     BUFFER.text = ''
-    recognition.start();
+    try{
+        recognition.start()
+    }catch(e){}
 };
 
 startBtn.addEventListener('click', () => {
@@ -145,21 +171,23 @@ startBtn.addEventListener('click', () => {
     answer.value = ''
     BUFFER.text = ''
     window.speechSynthesis.cancel()
-    recognition.start();
+    try{
+        recognition.start()
+    }catch(e){}
 });
 
 stopBtn.addEventListener('click', () => {
-    speakBtn.ariaDisabled = false
-    cancelBtn.ariaDisabled = true
-    startBtn.ariaDisabled = false
-    stopBtn.ariaDisabled = true
     speak = true;
     answer.value = ''
     BUFFER.text = stopText
+    speakBtn.ariaDisabled = false
+    cancelBtn.ariaDisabled = true
     botImg.style.animation = "none"
     tvWrapper.style.animation = "none"
     window.speechSynthesis.cancel()
     recognition.stop();
+    startBtn.ariaDisabled = false
+    stopBtn.ariaDisabled = true
 
 });
 
@@ -167,7 +195,9 @@ cancelBtn.addEventListener('click', () => {
     window.speechSynthesis.cancel()
     answer.value = ''
     BUFFER.text = ''
-    recognition.start()
+    try{
+        recognition.start()
+    }catch(e){}
 })
 
 speechSynthesis.onvoiceschanged = () => {
@@ -203,22 +233,12 @@ clearBtn.addEventListener("click", () => {
 
 
 const sendMessage = async (prompt) => {
+
+    QA += `Me: ${prompt} \n`
+    console.log(QA.length)
     let payload = {
-        prompt: prompt + "correct above question and answer in brief without mentioning corrected question."
+        prompt: `${QA} answer briefly`
     }
-
-    botImg.style.animation = "botblink 1.5s 3s ease-in-out infinite"
-    tvWrapper.style.animation = "randomBorder 1.5s 3s ease-in-out infinite"
-
-    setTimeout(() => {
-        tellMe(waitMsg[Math.floor(Math.random() * (waitMsg.length))], voiceIndex, pitch, rate, true)
-    }, 3000)
-
-    setTimeout(() => {
-        if (!window.speechSynthesis.speaking) {
-            tellMe(thankmsg, voiceIndex, pitch, rate, true)
-        }
-    }, 8000)
 
     try {
         const response = await fetch(workerURL, {
@@ -236,15 +256,15 @@ const sendMessage = async (prompt) => {
         const data = await response.json()
         answer.value = ""
         botImg.style.animation = "none"
-        tvWrapper.style.animation = "none"
-
+        tvWrapper.style.animation = "none"  
+        QA += `You: ${data?.result?.response}\n`
         tellMe(data?.result?.response, voiceIndex, pitch, rate)
 
     } catch (error) {
         answer.value = error
         stopBtn.click()
         interimTxt.innerHTML = "<span style='color:red;'> Invalid Credentials </span>"
-        setTimeout(() => interimTxt.innerHTML = '', 3000)
+        setTimeout(() => interimTxt.innerHTML = '', 4000)
     }
 
 }
