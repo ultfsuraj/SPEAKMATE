@@ -239,8 +239,7 @@ body {
     align-content: center;
     padding: calc(2*var(--customVW)/100) calc(4*var(--customVW)/100);
     font-size: var(--regular);
-    background-color: #004AAD;
-    border: calc(1*var(--customVW)/100) solid #0046a1;
+    background-color: #053154;
     color: white;
     letter-spacing: calc(0.5*var(--customVW)/100);
     font-weight: 500;
