@@ -88,7 +88,7 @@ body {
 }
 
 #homeSection {
-    background-image: linear-gradient(to right, #FFD4D4, #CEFFD6);
+    background-image: linear-gradient(to right, #ffffff, #a8eaf2);
     padding-left: calc(5*var(--customVW)/100);
 }
 
@@ -244,6 +244,8 @@ body {
     letter-spacing: calc(0.5*var(--customVW)/100);
     font-weight: 500;
     cursor: pointer;
+    border-radius: 5%;
+    border: 2px solid #04223b;
 }
 
 .voicesContainer {
@@ -315,26 +317,30 @@ body {
 .start {
     border: 1px solid gray;
     display: inline-block;
-    height: 7vh;
     width: 42%;
     text-align: center;
     align-content: center;
-    font-size: var(--large);
+    padding: calc(2*var(--customVW)/100);
+    font-size: var(--regular);
     background-color: #67DB00;
     cursor: pointer;
+    border-radius: 5%;
+    border: 2px solid rgb(3, 163, 3);
 }
 
 .stop {
     border: 1px solid gray;
     display: inline-block;
-    height: 7vh;
     width: 42%;
     text-align: center;
     align-content: center;
-    font-size: var(--large);
+    padding: calc(2*var(--customVW)/100);
+    font-size: var(--regular);
     background-color: #D40000;
     color: white;
     cursor: pointer;
+    border-radius: 5%;
+    border: 2px solid rgb(163, 3, 3);
 }
 
 .psmWrapper,
