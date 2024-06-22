@@ -32,7 +32,7 @@ let rate = 1
 let modelName = ''
 let accountID = ''
 let token = ''
-let workerURL = workerurlTxt.value ||  'https://speakmate.tepax23408.workers.dev/'
+let workerURL = 'https://speakmate.tepax23408.workers.dev/'
 let speak = true;
 let voiceIndex = 0;
 let voices = window.speechSynthesis.getVoices() || []
@@ -243,6 +243,7 @@ const compressMsg = async () => {
         modelName: modelName,
     }
     try {
+        workerURL = workerurlTxt.value ||  'https://speakmate.tepax23408.workers.dev/'
         const response = await fetch(workerURL, {
             method: 'POST',
             headers: {
@@ -280,6 +281,7 @@ const sendMessage = async (prompt) => {
     answered = false
 
     try {
+        workerURL = workerurlTxt.value ||  'https://speakmate.tepax23408.workers.dev/'
         const response = await fetch(workerURL, {
             method: 'POST',
             headers: {
