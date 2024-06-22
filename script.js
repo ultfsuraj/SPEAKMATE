@@ -235,7 +235,10 @@ clearBtn.addEventListener("click", () => {
 
 const compressMsg = async () => {
     let payload = {
-        prompt: `${QA}. compress our above conversation without loosing context & only send the dialogs. use 'Me' for questions i asked to you, and 'YOU' for answers you've given.`
+        prompt: `${QA}. compress our above conversation without loosing context & only send the dialogs. use 'Me' for questions i asked to you, and 'YOU' for answers you've given.`,
+        accountID: accountID,
+        token: token,
+        modelName: modelName,
     }
     try {
         const response = await fetch(workerURL, {
@@ -266,7 +269,10 @@ const sendMessage = async (prompt) => {
     QA += `Me: ${prompt} \n`
     console.log(QA.length)
     let payload = {
-        prompt: `${QA} based on our discussion above, answer as short as possible, to the point.`
+        prompt: `${QA} based on our discussion above, answer as short as possible, to the point.`,
+        accountID: accountID,
+        token: token,
+        modelName: modelName,
     }
 
     answered = false
