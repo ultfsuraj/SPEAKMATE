@@ -7,30 +7,6 @@ if (!('speechSynthesis' in window)) {
     alert('Your browser does not support the Web Speech API');
 }
 
-let pitch = 0.95
-let rate = 1
-let modelName = ''
-let accountID = ''
-let token = ''
-let workerURL = 'https://withered-frog-d5b7.purkufirte.workers.dev/'
-let speak = true;
-let voiceIndex = 0;
-let voices = window.speechSynthesis.getVoices() || []
-let thankmsg = "Thank you for your patience"
-const stopText = "stop recognition"
-const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-let QA = ""
-let answered = false
-
-
-if (!SpeechRecognition) {
-    alert('Your browser does not support the Web Speech API');
-}
-const recognition = new SpeechRecognition();
-recognition.continuous = false;
-recognition.interimResults = true;
-recognition.lang = 'en-US';
 const startBtn = document.querySelector('.start')
 const stopBtn = document.querySelector('.stop')
 const answer = document.querySelector('.ans')
@@ -50,6 +26,32 @@ const modelnameTxt = document.querySelector('#modelname')
 const accountidTxt = document.querySelector('#accountid')
 const workerurlTxt = document.querySelector('#workerurl')
 const tokenTxt = document.querySelector('#token')
+
+let pitch = 0.95
+let rate = 1
+let modelName = ''
+let accountID = ''
+let token = ''
+let workerURL = workerurlTxt.value ||  'https://speakmate.tepax23408.workers.dev/'
+let speak = true;
+let voiceIndex = 0;
+let voices = window.speechSynthesis.getVoices() || []
+let thankmsg = "Thank you for your patience"
+const stopText = "stop recognition"
+const waitMsg = ['give me some time to answer', 'ok. let me think for a while', 'wait a second. i will answer that', 'please hold for a second']
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let QA = ""
+let answered = false
+
+
+if (!SpeechRecognition) {
+    alert('Your browser does not support the Web Speech API');
+}
+const recognition = new SpeechRecognition();
+recognition.continuous = false;
+recognition.interimResults = true;
+recognition.lang = 'en-US';
+
 
 
 const BUFFER = {

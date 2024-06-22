@@ -24,11 +24,10 @@ addEventListener('fetch', event => {
     }
   
     // Parse the request body
-    const requestBody = await request.json()
-  
+    const {accountID,token,modelName,prompt} = await request.json()
     // Define your Cloudflare Worker AI API endpoint and key
-    const apiUrl = 'https://api.cloudflare.com/client/v4/accounts/0ace3b07ef566bc61d722a7d3a4bc895/ai/run/@cf/meta/llama-3-8b-instruct'
-    const apiKey = 'xDVpTtb395h-M0YDhEnCpuGwQ8KrsPCdLGbCpMlq'
+    const apiUrl = `https://api.cloudflare.com/client/v4/accounts/${accountID.length > 8 ? accountID : '0ace3b07ef566bc61d722a7d3a4bc895'}/ai/run/${modelName.length > 8 ? modelName : '@cf/meta/llama-3-8b-instruct'}`
+    const apiKey = `${token.length > 8 ? token : 'xDVpTtb395h-M0YDhEnCpuGwQ8KrsPCdLGbCpMlq'}`
   
     // Forward the request to the Cloudflare Worker AI API
     const apiResponse = await fetch(apiUrl, {
@@ -37,7 +36,7 @@ addEventListener('fetch', event => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({prompt: prompt})
     })
   
     // Return the API response
