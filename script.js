@@ -266,7 +266,7 @@ const sendMessage = async (prompt) => {
     QA += `Me: ${prompt} \n`
     console.log(QA.length)
     let payload = {
-        prompt: `${QA} answer as short as possible, to the point.`
+        prompt: `${QA} based on our discussion above, answer as short as possible, to the point.`
     }
 
     answered = false
